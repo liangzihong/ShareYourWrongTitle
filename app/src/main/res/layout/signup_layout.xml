@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/signup_inputUser_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="49dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="请输入用户名"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40dp"
+        android:layout_marginEnd="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户名"
+        android:textSize="30sp"
+        android:layout_marginRight="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_alignTop="@+id/signup_inputUser_editText"
+        android:layout_toLeftOf="@+id/signup_inputUser_editText"
+        android:layout_toStartOf="@+id/signup_inputUser_editText"
+        android:id="@+id/textView3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="密码"
+        android:textSize="30sp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/signup_inputUser_editText"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_alignRight="@+id/textView3"
+        android:layout_alignEnd="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/signup_inputPassword_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/signup_inputUser_editText"
+        android:layout_alignStart="@+id/signup_inputUser_editText"
+        android:layout_alignTop="@+id/textView4"
+        android:ems="10"
+        android:hint="密码"
+        android:inputType="textPassword"
+        />
+
+    <Button
+        android:id="@+id/signup_ensure_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"
+        android:layout_below="@+id/signup_inputPassword_editText"
+        android:layout_marginLeft="37dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="50dp"
+        android:text="确定" />
+
+    <Button
+        android:id="@+id/signup_cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/signup_inputPassword_editText"
+        android:layout_alignRight="@+id/signup_inputPassword_editText"
+        android:layout_alignTop="@+id/signup_ensure_button"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:text="取消" />
+
+
+</RelativeLayout>
