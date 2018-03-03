@@ -62,8 +62,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-
-
+    /**
+     * 下面都是ISignupView的接口实现方法
+     */
     @Override
     public Context getContext() {
         return this;
