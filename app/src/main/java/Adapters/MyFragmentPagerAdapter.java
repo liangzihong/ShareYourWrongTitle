@@ -1,4 +1,4 @@
-package com.example.liangzihong.viewpager;
+package Adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

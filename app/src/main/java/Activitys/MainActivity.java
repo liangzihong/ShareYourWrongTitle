@@ -1,4 +1,4 @@
-package com.example.liangzihong.viewpager;
+package Activitys;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -8,8 +8,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
 
+import Adapters.MyFragmentPagerAdapter;
+import Adapters.MyViewPagerAdapter;
+import com.example.liangzihong.viewpager.R;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import Fragments.Fragment1;
+import Fragments.Fragment2;
+import Fragments.Fragment3;
+import Fragments.Fragment4;
 
 public class MainActivity extends AppCompatActivity {
 

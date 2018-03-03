@@ -1,4 +1,4 @@
-package com.example.liangzihong.viewpager;
+package Adapters;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
