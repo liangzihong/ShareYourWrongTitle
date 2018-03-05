@@ -12,7 +12,7 @@ import com.example.liangzihong.viewpager.R;
  * Created by Liang Zihong on 2018/2/26.
  */
 
-public class StartActivity extends AppCompatActivity implements View.OnClickListener {
+public class StartActivity extends BaseActivity implements View.OnClickListener {
 
     private Button login_button;
     private Button signup_button;

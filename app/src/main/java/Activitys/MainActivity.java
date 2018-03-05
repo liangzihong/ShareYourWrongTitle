@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.RadioGroup;
 
 import Adapters.MyFragmentPagerAdapter;
@@ -20,7 +21,7 @@ import Fragments.Fragment2;
 import Fragments.Fragment3;
 import Fragments.Fragment4;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private List<View> viewList;
     private ViewPager viewPager;

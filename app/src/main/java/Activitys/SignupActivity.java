@@ -18,7 +18,7 @@ import Presenters.SignupPresenter;
  * Created by Liang Zihong on 2018/2/26.
  */
 
-public class SignupActivity extends AppCompatActivity implements View.OnClickListener,ISignupView {
+public class SignupActivity extends BaseActivity implements View.OnClickListener,ISignupView {
     private Button ensure_button;
     private Button cancel_button;
     private EditText user;
