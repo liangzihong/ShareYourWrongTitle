@@ -27,6 +27,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText password;
     private ILoginPresenter iLoginPresenter;
 
+
+
+    public static void startAction(Context context,String param1){
+        Intent intent=new Intent(context,LoginActivity.class);
+        intent.putExtra("param1",param1);
+        context.startActivity(intent);
+    }
+
+    public static void startAction(Context context){
+        Intent intent=new Intent(context,LoginActivity.class);
+        context.startActivity(intent);
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +78,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
         }
     }
+
+
+
+
 
 
     /**

@@ -1,6 +1,7 @@
 package Activitys;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +25,13 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     private EditText user;
     private EditText password;
     private ISignupPresenter iSignupPresenter;
+
+    
+    public static void startAction(Context context){
+        Intent intent=new Intent(context,SignupActivity.class);
+        context.startActivity(intent);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

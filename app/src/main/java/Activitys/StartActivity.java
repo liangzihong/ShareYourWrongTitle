@@ -39,12 +39,10 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.welcome_login_button:
-                Intent LoginIntent=new Intent(this,LoginActivity.class);
-                startActivity(LoginIntent);
+                LoginActivity.startAction(this);
                 break;
             case R.id.welcome_signup_button:
-                Intent SignupIntent=new Intent(this,SignupActivity.class);
-                startActivity(SignupIntent);
+                SignupActivity.startAction(this);
                 break;
         }
     }
