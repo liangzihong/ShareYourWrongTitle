@@ -26,7 +26,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     private EditText password;
     private ISignupPresenter iSignupPresenter;
 
-    
+
     public static void startAction(Context context){
         Intent intent=new Intent(context,SignupActivity.class);
         context.startActivity(intent);
