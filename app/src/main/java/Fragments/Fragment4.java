@@ -21,6 +21,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,9 +29,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.ViewTarget;
 import com.example.liangzihong.viewpager.R;
 
 import java.io.File;
@@ -38,6 +44,7 @@ import java.io.File;
 import Activitys.MainActivity;
 import Activitys.StartActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
+import jp.wasabeef.glide.transformations.BlurTransformation;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -58,7 +65,7 @@ public class Fragment4 extends Fragment {
     private Button NameButton;
     private Button ProfileButton;
     private Button LogoutButton;
-
+    private CardView bg;
 
 
     @Override
@@ -72,6 +79,7 @@ public class Fragment4 extends Fragment {
         ProfileButton = (Button) view.findViewById(R.id.view4_profile_button);
         NameTextView = (TextView)view.findViewById(R.id.view4_name);
         LogoutButton = (Button)view.findViewById(R.id.view4_logout_button);
+        bg = (CardView) view.findViewById(R.id.view4_profile_bg);
         init();
 
         return view;
@@ -103,6 +111,7 @@ public class Fragment4 extends Fragment {
                 StartActivity.startPictureActivity(myActivity);
             }
         });
+
 
     }
 
@@ -259,7 +268,22 @@ public class Fragment4 extends Fragment {
             default:
                 break;
         }
-
+        // 高斯模糊
+        if (imageUri.equals("") == false) {
+            Glide.with(myActivity)
+                    .load(imageUri)
+                    .dontAnimate()
+                    //第二个参数是圆角半径，第三个是模糊程度，2-5之间个人感觉比较好。
+                    .bitmapTransform(new BlurTransformation(myActivity, 14, 3))
+                    .into(new ViewTarget<View, GlideDrawable>(bg) {
+                        //括号里为需要加载的控件
+                        @Override
+                        public void onResourceReady(GlideDrawable resource,
+                                                    GlideAnimation<? super GlideDrawable> glideAnimation) {
+                            this.view.setBackground(resource.getCurrent());
+                        }
+                    });
+        }
 
 
     }
