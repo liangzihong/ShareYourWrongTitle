@@ -42,8 +42,8 @@ public class GroupAdapter extends ArrayAdapter<Group> {
             view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
             viewHolder=new ViewHolder();
             viewHolder.profilephoto=(ImageView)view.findViewById(R.id.image);
-            viewHolder.lastrecord=(TextView)view.findViewById(R.id.LastRecord);
-            viewHolder.name=(TextView)view.findViewById(R.id.Name);
+            viewHolder.lastrecord=(TextView)view.findViewById(R.id.Title_Tags);
+            viewHolder.name=(TextView)view.findViewById(R.id.Author_Name);
             view.setTag(viewHolder);
         }
         else{

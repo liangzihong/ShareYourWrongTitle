@@ -49,8 +49,8 @@ public class LoadGroupPresenter implements ILoadGroupPresenter {
         String[]LastRecords=new String[10];
 
         for(int i=0;i<10;i++){
-            GroupNames[i]="第"+i+"个群";
-            LastRecords[i]="今晚"+i+"点集合";
+            GroupNames[i]="作者：";
+            LastRecords[i]="标签：";
         }
 
         loadGroup(GroupNames,ProfilePhotos,LastRecords);

@@ -1,5 +1,6 @@
 package Activitys;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,15 @@ public class StartActivity extends BaseActivity implements View.OnClickListener 
 
     private Button login_button;
     private Button signup_button;
+
+
+    public static void startPictureActivity(Context context){
+        Intent intent=new Intent(context,StartActivity.class);
+        context.startActivity(intent);
+    }
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

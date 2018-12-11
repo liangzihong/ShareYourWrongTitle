@@ -50,7 +50,10 @@ public class Fragment1 extends Fragment implements ILoadGroupFragment,AdapterVie
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getContext(), "群"+position+"不能聊天", Toast.LENGTH_SHORT).show();
+        ArrayList<Group> groupList = (ArrayList<Group>) iLoadGroupPresenter.getGroupList();
+        Group chosenGroup = groupList.get(position);
+        Toast.makeText(getContext(), chosenGroup.getProfilePhoto(), Toast.LENGTH_SHORT).show();
+
     }
 
 

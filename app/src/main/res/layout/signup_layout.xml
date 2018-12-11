@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background_color">
 
     <EditText
         android:id="@+id/signup_inputUser_editText"
@@ -21,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="用户名"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:layout_marginRight="14dp"
         android:layout_marginEnd="14dp"
         android:layout_alignTop="@+id/signup_inputUser_editText"
@@ -34,13 +35,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="密码"
-        android:textSize="30sp"
-        android:layout_marginTop="25dp"
+        android:textSize="20sp"
+        android:layout_marginTop="26dp"
         android:layout_below="@+id/signup_inputUser_editText"
         android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_alignRight="@+id/textView3"
-        android:layout_alignEnd="@+id/textView3" />
+        android:layout_alignStart="@+id/textView3" />
 
     <EditText
         android:id="@+id/signup_inputPassword_editText"
@@ -64,7 +63,9 @@
         android:layout_marginLeft="37dp"
         android:layout_marginStart="37dp"
         android:layout_marginTop="50dp"
-        android:text="确定" />
+        android:textSize="20sp"
+        android:text="确定"
+        android:background="@android:color/transparent"/>
 
     <Button
         android:id="@+id/signup_cancel_button"
@@ -75,7 +76,9 @@
         android:layout_alignTop="@+id/signup_ensure_button"
         android:layout_marginEnd="30dp"
         android:layout_marginRight="30dp"
-        android:text="取消" />
+        android:textSize="20sp"
+        android:text="取消"
+        android:background="@android:color/transparent" />
 
 
 </RelativeLayout>

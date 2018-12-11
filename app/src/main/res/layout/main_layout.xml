@@ -13,51 +13,51 @@
     </android.support.v4.view.ViewPager>
 
     <RadioGroup
-        android:layout_weight="1"
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/first"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@drawable/team"
             android:gravity="center"
-            android:text="微信" />
+            android:text="团队" />
 
         <RadioButton
             android:id="@+id/second"
-            android:layout_width="wrap_content"
-            android:button="@null"
-            android:gravity="center"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="通讯录" />
+            android:button="@null"
+            android:drawableTop="@drawable/category"
+            android:gravity="center"
+            android:text="分区" />
 
         <RadioButton
             android:id="@+id/third"
-            android:layout_width="wrap_content"
-            android:button="@null"
-            android:gravity="center"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="发现" />
+            android:button="@null"
+            android:drawableTop="@drawable/release"
+            android:gravity="center"
+            android:text="发布" />
 
         <RadioButton
             android:id="@+id/forth"
-            android:layout_width="wrap_content"
-            android:button="@null"
-            android:gravity="center"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="我" />
+            android:button="@null"
+            android:drawableTop="@drawable/account"
+            android:gravity="center"
+            android:text="我的"
+            android:layout_weight="1" />
 
     </RadioGroup>
 

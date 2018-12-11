@@ -2,34 +2,100 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background_color">
 
-
-    <TextView
-        android:id="@+id/textView"
-        android:gravity="center"
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="欢迎来到我不是微信"
-        android:textSize="30sp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-
-    <Button
-        android:id="@+id/welcome_login_button"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="登录"/>
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="7">
 
-    <Button
-        android:id="@+id/welcome_signup_button"
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:layout_margin="10dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            >
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="你还没有登陆哦~~\n快点登陆与同学共享错题"
+                android:layout_weight="2"
+                android:gravity="center"/>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <Button
+                android:id="@+id/welcome_login_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="登录"
+                android:background="@android:color/transparent"
+                />
+
+            <Button
+                android:id="@+id/welcome_signup_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="注册"
+                android:background="@android:color/transparent"/>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="注册"/>
-
-    <ImageView
-        android:src="@mipmap/ic_launcher_round"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>

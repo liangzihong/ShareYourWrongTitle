@@ -47,6 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
         init();
+        successLogin();    // 添加了这段代码，暂时进入都不用输入密码
     }
 
 
@@ -94,7 +95,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     public void successLogin() {
-        Toast.makeText(this, "进入我不是微信", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "进入共享错题本", Toast.LENGTH_SHORT).show();
         Intent intent1=new Intent(this,MainActivity.class);
         startActivity(intent1);
 
