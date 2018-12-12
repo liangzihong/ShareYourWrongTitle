@@ -113,6 +113,9 @@ public class Fragment4 extends Fragment {
         });
 
 
+
+
+
     }
 
 // -------------------------------------------------------------------------------------------------
@@ -274,7 +277,7 @@ public class Fragment4 extends Fragment {
                     .load(imageUri)
                     .dontAnimate()
                     //第二个参数是圆角半径，第三个是模糊程度，2-5之间个人感觉比较好。
-                    .bitmapTransform(new BlurTransformation(myActivity, 14, 3))
+                    .bitmapTransform(new BlurTransformation(myActivity, 1, 4))
                     .into(new ViewTarget<View, GlideDrawable>(bg) {
                         //括号里为需要加载的控件
                         @Override

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.BaseAdapter;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import Adapters.MyFragmentPagerAdapter;
 import Adapters.MyViewPagerAdapter;
@@ -41,7 +42,6 @@ public class MainActivity extends BaseActivity {
 
         secondMethod();
         radioGroupInit();
-
 
 
     }
@@ -96,6 +96,35 @@ public class MainActivity extends BaseActivity {
         MyFragmentPagerAdapter adapter2=new MyFragmentPagerAdapter(getSupportFragmentManager(),fragmentList);
         viewPager.setAdapter(adapter2);
 
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        radioGroup.check(R.id.first);
+                        break;
+                    case 1:
+                        radioGroup.check(R.id.second);
+                        break;
+                    case 2:
+                        radioGroup.check(R.id.third);
+                        break;
+                    case 3:
+                        radioGroup.check(R.id.forth);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
     }
 
@@ -126,6 +155,7 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+        radioGroup.check(R.id.first);
     }
 }
 

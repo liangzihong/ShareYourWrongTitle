@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="8dp"
         android:background="#f6f6f6"/>
 
     <RadioGroup
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/team"
+            android:drawableTop="@drawable/team_selector"
             android:gravity="center"
             android:textSize="12sp"
             android:text="团队" />
@@ -41,7 +41,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/category"
+            android:drawableTop="@drawable/category_selector"
             android:gravity="center"
             android:textSize="12sp"
             android:text="分区" />
@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/release"
+            android:drawableTop="@drawable/release_selector"
             android:gravity="center"
             android:textSize="12sp"
             android:text="发布"
@@ -63,7 +63,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:button="@null"
-            android:drawableTop="@drawable/account"
+            android:drawableTop="@drawable/account_selector"
             android:gravity="center"
             android:text="我的"
             android:textSize="12sp"
@@ -73,7 +73,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="6dp"
         android:background="#f6f6f6"/>
 
 </LinearLayout>
