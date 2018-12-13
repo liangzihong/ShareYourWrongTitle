@@ -145,7 +145,7 @@ public class Fragment4 extends Fragment {
     private void showNormalDialog(){
         final AlertDialog.Builder normalDialog =
                 new AlertDialog.Builder(this.getContext());
-        normalDialog.setTitle("选择选择照片的途径");
+        normalDialog.setTitle("选择头像照片的途径");
         normalDialog.setMessage("打开");
         normalDialog.setPositiveButton("相册",
                 new DialogInterface.OnClickListener() {
@@ -154,7 +154,7 @@ public class Fragment4 extends Fragment {
                         applyPermission();
                     }
                 });
-        normalDialog.setNegativeButton("相机",
+        normalDialog.setNegativeButton("拍照",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -277,7 +277,7 @@ public class Fragment4 extends Fragment {
                     .load(imageUri)
                     .dontAnimate()
                     //第二个参数是圆角半径，第三个是模糊程度，2-5之间个人感觉比较好。
-                    .bitmapTransform(new BlurTransformation(myActivity, 1, 4))
+                    .bitmapTransform(new BlurTransformation(myActivity, 20, 2))
                     .into(new ViewTarget<View, GlideDrawable>(bg) {
                         //括号里为需要加载的控件
                         @Override
