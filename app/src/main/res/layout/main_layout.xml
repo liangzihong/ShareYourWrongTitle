@@ -32,7 +32,7 @@
             android:button="@null"
             android:drawableTop="@drawable/team_selector"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:text="团队" />
 
         <RadioButton
@@ -43,7 +43,7 @@
             android:button="@null"
             android:drawableTop="@drawable/category_selector"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:text="分区" />
 
         <RadioButton
@@ -54,7 +54,7 @@
             android:button="@null"
             android:drawableTop="@drawable/release_selector"
             android:gravity="center"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:text="发布"
             />
 
@@ -66,7 +66,7 @@
             android:drawableTop="@drawable/account_selector"
             android:gravity="center"
             android:text="我的"
-            android:textSize="12sp"
+            android:textSize="16sp"
             android:textStyle="normal"
             android:layout_weight="1" />
     </RadioGroup>

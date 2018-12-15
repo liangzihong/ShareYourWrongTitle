@@ -2,92 +2,99 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/background_color">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"/>
-
-        <Button
-            android:id="@+id/view3_album_button"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="2"
-            android:background="@android:color/transparent"
-            android:drawableBottom="@drawable/album"
-            />
-
-        <Button
-            android:id="@+id/view3_camera_button"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="2"
-            android:background="@android:color/transparent"
-            android:drawableBottom="@drawable/camera"
-            />
-    </LinearLayout>
-
-
-    <ImageView
-        android:id="@+id/view3_imageView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:layout_margin="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/add_photo"/>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:orientation="vertical">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:hint="输入标签"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:minLines="5"
-            android:hint = "写下对此题的感想"
-            android:textSize="15sp"
-            android:gravity="top"/>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
             <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="10"/>
 
             <Button
-                android:layout_width="wrap_content"
+                android:id="@+id/view3_album_button"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:background="@android:color/transparent"
+                android:drawableBottom="@drawable/album"
+                />
+
+            <Button
+                android:id="@+id/view3_camera_button"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="2"
+                android:background="@android:color/transparent"
+                android:drawableBottom="@drawable/camera"
+                />
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/view3_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_margin="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/add_photo"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="发送"
-                android:background="@android:color/transparent"/>
+                android:textSize="15sp"
+                android:hint="输入标签"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:minLines="5"
+                android:hint = "写下对此题的感想"
+                android:textSize="15sp"
+                android:gravity="top"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="10"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="发送"
+                    android:background="@android:color/transparent"/>
+
+
+            </LinearLayout>
+
 
 
         </LinearLayout>
 
 
 
-    </LinearLayout>
+
 
 
 </LinearLayout>
