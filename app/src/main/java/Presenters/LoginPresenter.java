@@ -1,6 +1,11 @@
 package Presenters;
 
+import android.util.Log;
+
 import Activitys.ILoginView;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 import models.IUser;
 import models.User_model;
 
@@ -29,10 +34,30 @@ public class LoginPresenter implements ILoginPresenter {
 
     @Override
     public void startLogin(String name, String password) {
-        if(iUser.isLoginSuccess(name,password))
-            successLogin();
-        else
-            failLogin();
+
+
+        // 添加 bmob 登录功能
+        BmobUser bu = new BmobUser();
+        bu.setUsername(name);
+        bu.setPassword(password);
+        bu.login(new SaveListener<BmobUser>() {
+            @Override
+            public void done(BmobUser bmobUser, BmobException e) {
+                if(e==null)
+                    successLogin();
+                else{
+                    Log.e("fuck", "login done: "+e.toString() );
+                    failLogin();
+                }
+            }
+        });
+
+
+
+//        if(iUser.isLoginSuccess(name,password))
+//            successLogin();
+//        else
+//            failLogin();
     }
 
 

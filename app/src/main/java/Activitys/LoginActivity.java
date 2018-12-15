@@ -47,7 +47,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_layout);
         init();
-        successLogin();    // 添加了这段代码，暂时进入都不用输入密码
+//        successLogin();    // 添加了这段代码，暂时进入都不用输入密码
     }
 
 

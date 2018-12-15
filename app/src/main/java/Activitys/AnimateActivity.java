@@ -8,6 +8,8 @@ import android.view.animation.Animation;
 
 import com.example.liangzihong.viewpager.R;
 
+import cn.bmob.v3.Bmob;
+
 /**
  * Created by Liang Zihong on 2018/12/9.
  */
@@ -16,6 +18,7 @@ public class AnimateActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bmob.initialize(this, "639a960d0b197dc4f960edca51cd6a9e");
         final View view = View.inflate(this, R.layout.animatelayout, null);
         setContentView(view);
 
