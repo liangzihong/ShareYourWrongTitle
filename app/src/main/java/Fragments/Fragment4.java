@@ -40,17 +40,26 @@ import com.bumptech.glide.request.target.ViewTarget;
 import com.example.liangzihong.viewpager.R;
 
 import java.io.File;
+import java.util.List;
 
 import Activitys.MainActivity;
 import Activitys.StartActivity;
 import Application.MyApplication;
+import BmobModels.BProfilePhoto;
+import MyUtils.util1;
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
+import cn.bmob.v3.listener.UploadFileListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 import static android.app.Activity.RESULT_OK;
+import MyUtils.util1;
 
 /**
  * Created by Liang Zihong on 2018/2/8.
@@ -70,7 +79,6 @@ public class Fragment4 extends Fragment {
     private Button ProfileButton;
     private Button LogoutButton;
     private CardView bg;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
@@ -119,7 +127,7 @@ public class Fragment4 extends Fragment {
             }
         });
 
-
+        
 
 
     }
@@ -290,6 +298,11 @@ public class Fragment4 extends Fragment {
                     }
                     catch (Exception e){e.printStackTrace();}
 //                    this.getContext().getContentResolver().delete(imageUri, null, null);
+
+                    // 将照片传上服务器
+                    uploadProfileToServer(new File(imageUri.getPath()));
+
+
                 }
                 break;
 
@@ -394,7 +407,72 @@ public class Fragment4 extends Fragment {
         }
         else
             Toast.makeText(myActivity, "failed to get image", Toast.LENGTH_SHORT).show();
+        uploadProfileToServer(new File(imagePath));
+    }
+
+
+
+    // 更新头像
+    private void uploadProfileToServer(final File file) {
+
+        MyApplication app = (MyApplication) myActivity.getApplication();
+        String userName = app.getCurrentUserName();
+
+        // 先找到当前用户的头像表的id
+        final Object[] objs = new Object[1];
+        objs[0] = null;
+        BmobQuery<BProfilePhoto> query = new BmobQuery<BProfilePhoto>();
+        query.addWhereEqualTo("userName", userName);
+        query.findObjects(new FindListener<BProfilePhoto>() {
+            @Override
+            public void done(List<BProfilePhoto> list, BmobException e) {
+                if (e==null){
+                    Log.e("fuck", "successUpdate:用户ID为"+ list.get(0).getObjectId() );
+                    objs[0] = list.get(0).getObjectId();
+
+                    // 再更新即可
+                    final String objectId = (String) objs[0];
+                    final BmobFile bFile = new BmobFile(file);
+                    Log.e("fuck", "successUpdate:文件名字为"+ file.getAbsolutePath() );
+                    Log.e("fuck", "successUpdate:文件是否存在"+ file.exists() );
+                    Log.e("fuck", "successUpdate:用户ID为"+ objectId );
+
+                    bFile.uploadblock(new UploadFileListener() {
+
+                        @Override
+                        public void done(BmobException e) {
+                            if (e == null) {
+
+                                BProfilePhoto newPro = new BProfilePhoto();
+                                newPro.setValue("profilePhotoFile", bFile);
+                                newPro.update(objectId, new UpdateListener() {
+                                    @Override
+                                    public void done(BmobException e) {
+                                        if (e == null) {
+                                            Toast.makeText(myActivity, "更新头像完成", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toast.makeText(myActivity, "更新头像失败", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                            }
+                            else {
+                                Toast.makeText(MyApplication.getContext(), "更改头像时上传图片失败", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+                }
+                else{
+                    Toast.makeText(myActivity, "找不到objectID", Toast.LENGTH_SHORT).show();
+                    return ;
+                }
+            }
+        });
+
+
     }
 
 }
+
 

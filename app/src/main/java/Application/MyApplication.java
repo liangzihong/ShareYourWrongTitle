@@ -9,9 +9,11 @@ import android.content.Context;
 
 public class MyApplication extends Application {
     private String CurrentUserName = null;
+    private static Context context;
 
     @Override
     public void onCreate() {
+        context = getApplicationContext();
         super.onCreate();
     }
 
@@ -19,8 +21,13 @@ public class MyApplication extends Application {
         this.CurrentUserName = currentUserName;
     }
 
+    public static Context getContext() {
+        return context;
+    }
+
     public String getCurrentUserName(){
         return this.CurrentUserName;
     }
+
 
 }
