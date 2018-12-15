@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.liangzihong.viewpager.R;
 
+import Application.MyApplication;
 import Presenters.ILoginPresenter;
 import Presenters.LoginPresenter;
 
@@ -94,7 +95,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     @Override
-    public void successLogin() {
+    public void successLogin(String userName) {
+
+        MyApplication app = (MyApplication) getApplication();
+        app.setCurrentUserName(userName);
+
         Toast.makeText(this, "进入共享错题本", Toast.LENGTH_SHORT).show();
         Intent intent1=new Intent(this,MainActivity.class);
         startActivity(intent1);

@@ -43,6 +43,10 @@ import java.io.File;
 
 import Activitys.MainActivity;
 import Activitys.StartActivity;
+import Application.MyApplication;
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.UpdateListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
@@ -88,6 +92,9 @@ public class Fragment4 extends Fragment {
     // 初始化
     private void init() {
 
+        MyApplication app = (MyApplication) getActivity().getApplication();
+        NameTextView.setText(app.getCurrentUserName());
+
         // 换头像
         ProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,20 +122,48 @@ public class Fragment4 extends Fragment {
 
 
 
-
     }
 
 // -------------------------------------------------------------------------------------------------
 
     public void alert_edit(){
         final EditText et = new EditText(myActivity);
-        new AlertDialog.Builder(myActivity).setTitle("请输入名字")
+        new AlertDialog.Builder(myActivity).setTitle("请输入新名字")
                 .setView(et)
                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        if (et.getText().equals("") == false)
-                            NameTextView.setText(et.getText());
+                        if (et.getText().equals("") == false) {
+
+                            final MyApplication app = (MyApplication) getActivity().getApplication();
+                            // user表的update
+                            // 如果改名成功，需要在 MyApplication改，在 bmob中改，在textName中改
+                            final String newName = et.getText()+"";
+                            BmobUser newBu = new BmobUser();
+                            newBu.setUsername(et.getText()+"");
+                            BmobUser bu = BmobUser.getCurrentUser(BmobUser.class);
+                            newBu.update(bu.getObjectId(), new UpdateListener() {
+                                @Override
+                                public void done(BmobException e) {
+                                    if (e == null) {   // 更新成功
+                                        app.setCurrentUserName(newName);
+                                        NameTextView.setText(newName);
+                                        new AlertDialog.Builder(myActivity).setTitle("更名成功")
+                                                .setMessage("你的用户名已修改，请记住哦~~").show();
+                                    }
+                                    else{
+                                        // 不和旧名一样，但是失败，说明有名字重合
+                                        if (newName.equals(app.getCurrentUserName()) == false){
+                                            new AlertDialog.Builder(myActivity).setTitle("更名失败")
+                                                    .setMessage("你想更改的名字已经被注册了哦~~\n请换另一个名字吧~~").show();
+                                        }
+                                    }
+                                }
+                            });
+
+                        }
+
+
                     }
                 }).setNegativeButton("取消",null).show();
     }

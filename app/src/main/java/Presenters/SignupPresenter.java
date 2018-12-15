@@ -7,8 +7,6 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
-import models.IUser;
-import models.User_model;
 
 /**
  * Created by Liang Zihong on 2018/3/3.
@@ -16,12 +14,10 @@ import models.User_model;
 
 public class SignupPresenter implements ISignupPresenter {
     private ISignupView iSignupView;
-    private IUser iUser;
 
 
     public SignupPresenter(ISignupView view) {
         iSignupView=view;
-        iUser=new User_model(view.getContext());
     }
 
     private void successSignup(){
@@ -58,13 +54,5 @@ public class SignupPresenter implements ISignupPresenter {
             });
         }
 
-
-
-
-
-//        if(iUser.isSignupSuccess(name,password))
-//            successSignup();
-//        else
-//            failedSignup();
     }
 }

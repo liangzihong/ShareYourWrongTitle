@@ -8,6 +8,6 @@ import android.content.Context;
 
 public interface ILoginView {
     public Context getContext();
-    public void successLogin();
+    public void successLogin(String userName);
     public void failLogin();
 }
