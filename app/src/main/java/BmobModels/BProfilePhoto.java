@@ -10,7 +10,7 @@ import cn.bmob.v3.datatype.BmobFile;
 // BmobFile 对象是由java的File对象组成，所以不怕
 public class BProfilePhoto extends BmobObject {
     private BmobFile profilePhotoFile;
-    private String userName;
+    private String userId;
 
     public BmobFile getProfilePhotoFile() {
         return profilePhotoFile;
@@ -20,12 +20,12 @@ public class BProfilePhoto extends BmobObject {
         this.profilePhotoFile = profilePhotoFile;
     }
 
-    public String getUserName(){
-        return userName;
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setUserName(String userName){
-        this.userName = userName;
+    public String getUserId() {
+        return userId;
     }
-
 }

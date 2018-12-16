@@ -32,19 +32,19 @@ public class LoginPresenter implements ILoginPresenter {
     @Override
     public void startLogin(String name, String password) {
 
-        final String tmp_name = name;
         // 添加 bmob 登录功能
-        BmobUser bu = new BmobUser();
+        final BmobUser bu = new BmobUser();
         bu.setUsername(name);
         bu.setPassword(password);
         bu.login(new SaveListener<BmobUser>() {
             @Override
             public void done(BmobUser bmobUser, BmobException e) {
                 if(e==null) {
-                    successLogin(tmp_name);
+                    Log.e("fuck", "登录成功，用户ID为: "+bu.getObjectId() );
+                    successLogin(bu.getObjectId());
                 }
                 else {
-                    Log.e("fuck", "login done: "+e.toString() );
+                    Log.e("fuck", "登录失败，LoginPresenter: "+e.toString() );
                     failLogin();
                 }
             }

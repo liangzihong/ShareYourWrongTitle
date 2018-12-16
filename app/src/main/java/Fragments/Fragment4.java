@@ -397,28 +397,22 @@ public class Fragment4 extends Fragment {
 
     // 更新头像
     private void uploadProfileToServer(final File file) {
+        final MyApplication app = (MyApplication) myActivity.getApplication();
 
-        MyApplication app = (MyApplication) myActivity.getApplication();
-        String userName = app.getCurrentUserName();
 
-        // 先找到当前用户的头像表的id
-        final Object[] objs = new Object[1];
-        objs[0] = null;
+        // 根据id 获取到数据表的项， 然后获取头像的objectid，然后上传头像图片，再根据objectId进行数据库头像的修改
         BmobQuery<BProfilePhoto> query = new BmobQuery<BProfilePhoto>();
-        query.addWhereEqualTo("userName", userName);
+        query.addWhereEqualTo("userId", app.getCurrentUserId());
         query.findObjects(new FindListener<BProfilePhoto>() {
             @Override
             public void done(List<BProfilePhoto> list, BmobException e) {
                 if (e==null){
-                    Log.e("fuck", "successUpdate:用户ID为"+ list.get(0).getObjectId() );
-                    objs[0] = list.get(0).getObjectId();
-
                     // 再更新即可
-                    final String objectId = (String) objs[0];
+                    final String objectId = list.get(0).getObjectId();
                     final BmobFile bFile = new BmobFile(file);
-                    Log.e("fuck", "successUpdate:文件名字为"+ file.getAbsolutePath() );
-                    Log.e("fuck", "successUpdate:文件是否存在"+ file.exists() );
-                    Log.e("fuck", "successUpdate:用户ID为"+ objectId );
+                    Log.e("fuck", "fragment4 上传头像的文件:文件名字为"+ file.getAbsolutePath() );
+                    Log.e("fuck", "fragment4 上传头像的文件:文件是否存在"+ file.exists() );
+                    Log.e("fuck", "fragment4 :头像表ID为"+ objectId );
 
                     bFile.uploadblock(new UploadFileListener() {
 
@@ -498,11 +492,9 @@ public class Fragment4 extends Fragment {
     // 进入加载原始头像
     private void loadUserProfilePhoto(){
         MyApplication app = (MyApplication) myActivity.getApplication();
-        String userName = app.getCurrentUserName();
 
-        // 先找到当前用户的头像表的id
         BmobQuery<BProfilePhoto> query = new BmobQuery<BProfilePhoto>();
-        query.addWhereEqualTo("userName", userName);
+        query.addWhereEqualTo("userId", app.getCurrentUserId());
         query.findObjects(new FindListener<BProfilePhoto>() {
             @Override
             public void done(List<BProfilePhoto> list, BmobException e) {

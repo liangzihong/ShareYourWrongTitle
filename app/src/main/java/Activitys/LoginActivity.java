@@ -16,6 +16,7 @@ import com.example.liangzihong.viewpager.R;
 import Application.MyApplication;
 import Presenters.ILoginPresenter;
 import Presenters.LoginPresenter;
+import MyUtils.util1;
 
 /**
  * Created by Liang Zihong on 2018/2/26.
@@ -95,10 +96,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     @Override
-    public void successLogin(String userName) {
+    public void successLogin(String userId) {
 
         MyApplication app = (MyApplication) getApplication();
-        app.setCurrentUserName(userName);
+        app.setCurrentUserId(userId);
 
         Toast.makeText(this, "进入共享错题本", Toast.LENGTH_SHORT).show();
         Intent intent1=new Intent(this,MainActivity.class);

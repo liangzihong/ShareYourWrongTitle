@@ -9,6 +9,7 @@ import android.content.Context;
 
 public class MyApplication extends Application {
     private String CurrentUserName = null;
+    private String CurrentUserId = null;
     private static Context context;
 
     @Override
@@ -29,5 +30,11 @@ public class MyApplication extends Application {
         return this.CurrentUserName;
     }
 
+    public String getCurrentUserId() {
+        return CurrentUserId;
+    }
 
+    public void setCurrentUserId(String currentUserId){
+        this.CurrentUserId = currentUserId;
+    }
 }

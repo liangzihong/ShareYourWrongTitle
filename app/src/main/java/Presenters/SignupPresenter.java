@@ -18,7 +18,7 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UploadFileListener;
 import jp.wasabeef.glide.transformations.internal.Utils;
-
+import MyUtils.util1;
 /**
  * Created by Liang Zihong on 2018/3/3.
  */
@@ -33,15 +33,14 @@ public class SignupPresenter implements ISignupPresenter {
 
 
     // 成功注册后，还要给 头像表赋值
-    private void successSignup(final String tmp_name) {
+    private void successSignup(final String userId) {
+
+        Log.e("fuck", "注册成功: 用户id为"+ userId );
 
         // 从drawable变成file需要经过 drawable -> bitmap -> file的过程，所以在util中解决，然后上传到服务器
-        File file =util1.drawableToFile(MyApplication.getContext(), R.drawable.unknown_profile, "unknowprofile.png");
+        final File file =util1.drawableToFile(MyApplication.getContext(), R.drawable.unknown_profile, "unknowprofile.png");
         final BmobFile bFile = new BmobFile(file);
 //        Log.e("fuck", "successSignup:文件名字为"+ file.getAbsolutePath() );
-        BProfilePhoto bProfilephoto = new BProfilePhoto();
-        bProfilephoto.setUserName(tmp_name);
-        bProfilephoto.setProfilePhotoFile(bFile);
 
         bFile.uploadblock(new UploadFileListener() {
 
@@ -49,7 +48,7 @@ public class SignupPresenter implements ISignupPresenter {
             public void done(BmobException e) {
                 if(e==null){
                     BProfilePhoto bProfilephoto = new BProfilePhoto();
-                    bProfilephoto.setUserName(tmp_name);
+                    bProfilephoto.setUserId(userId);
                     bProfilephoto.setProfilePhotoFile(bFile);
                     bProfilephoto.save(new SaveListener<String>() {
                         @Override
@@ -58,6 +57,8 @@ public class SignupPresenter implements ISignupPresenter {
                             Toast.makeText(MyApplication.getContext(), "初始化头像成功", Toast.LENGTH_SHORT).show();
                         }
                         else {
+                            Log.e("fuck", "signup_presenter:上传头像失败，文件名字为"+ file.getAbsolutePath() );
+                            Log.e("fuck", "signup_presenter:上传头像失败，错误原因为"+ e.toString() );
                             Toast.makeText(MyApplication.getContext(), "初始化头像失败", Toast.LENGTH_SHORT).show();
                         }
                         }
@@ -93,15 +94,14 @@ public class SignupPresenter implements ISignupPresenter {
         if (name.equals("") || password.equals(""))
             failedSignup();
         else {
-            final String tmp_name = name;
-            BmobUser bmobUser = new BmobUser();
+            final BmobUser bmobUser = new BmobUser();
             bmobUser.setUsername(name);
             bmobUser.setPassword(password);
             bmobUser.signUp(new SaveListener<BmobUser>() {
                 @Override
                 public void done(BmobUser user, BmobException e) {
                     if (e == null)
-                        successSignup(tmp_name);
+                        successSignup(bmobUser.getObjectId());
                     else {
                         Log.e("fuck", "signup done: " + e.toString());
                         failedSignup();
