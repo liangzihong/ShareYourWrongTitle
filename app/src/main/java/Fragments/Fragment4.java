@@ -127,8 +127,7 @@ public class Fragment4 extends Fragment {
             }
         });
 
-        
-
+        loadUserProfilePhoto();
 
     }
 
@@ -297,7 +296,6 @@ public class Fragment4 extends Fragment {
                         imageView.setImageBitmap(bitmap);
                     }
                     catch (Exception e){e.printStackTrace();}
-//                    this.getContext().getContentResolver().delete(imageUri, null, null);
 
                     // 将照片传上服务器
                     uploadProfileToServer(new File(imageUri.getPath()));
@@ -319,22 +317,7 @@ public class Fragment4 extends Fragment {
             default:
                 break;
         }
-        // 高斯模糊
-        if (imageUri.equals("") == false) {
-            Glide.with(myActivity)
-                    .load(imageUri)
-                    .dontAnimate()
-                    //第二个参数是圆角半径，第三个是模糊程度，2-5之间个人感觉比较好。
-                    .bitmapTransform(new BlurTransformation(myActivity, 20, 2))
-                    .into(new ViewTarget<View, GlideDrawable>(bg) {
-                        //括号里为需要加载的控件
-                        @Override
-                        public void onResourceReady(GlideDrawable resource,
-                                                    GlideAnimation<? super GlideDrawable> glideAnimation) {
-                            this.view.setBackground(resource.getCurrent());
-                        }
-                    });
-        }
+        GaussianBlurFromUri(imageUri);
 
 
     }
@@ -472,6 +455,68 @@ public class Fragment4 extends Fragment {
 
 
     }
+
+    // 通过 uri来进行高斯模糊
+    private void GaussianBlurFromUri( Uri uri) {
+        if (uri.equals("") == false) {
+            Glide.with(myActivity)
+                    .load(uri)
+                    .dontAnimate()
+                    //第二个参数是圆角半径，第三个是模糊程度，2-5之间个人感觉比较好。
+                    .bitmapTransform(new BlurTransformation(myActivity, 20, 2))
+                    .into(new ViewTarget<View, GlideDrawable>(bg) {
+                        //括号里为需要加载的控件
+                        @Override
+                        public void onResourceReady(GlideDrawable resource,
+                                                    GlideAnimation<? super GlideDrawable> glideAnimation) {
+                            this.view.setBackground(resource.getCurrent());
+                        }
+                    });
+            Glide.with(myActivity).load(uri).into(imageView);
+        }
+    }
+
+    // 通过 网址 url 来进行高斯模糊
+    private void GaussianBlurFromUrl( String url) {
+        Glide.with(myActivity)
+                .load(url)
+                .dontAnimate()
+                //第二个参数是圆角半径，第三个是模糊程度，2-5之间个人感觉比较好。
+                .bitmapTransform(new BlurTransformation(myActivity, 20, 2))
+                .into(new ViewTarget<View, GlideDrawable>(bg) {
+                    //括号里为需要加载的控件
+                    @Override
+                    public void onResourceReady(GlideDrawable resource,
+                                                GlideAnimation<? super GlideDrawable> glideAnimation) {
+                        this.view.setBackground(resource.getCurrent());
+                    }
+                });
+        Glide.with(myActivity).load(url).into(imageView);
+    }
+
+
+    // 进入加载原始头像
+    private void loadUserProfilePhoto(){
+        MyApplication app = (MyApplication) myActivity.getApplication();
+        String userName = app.getCurrentUserName();
+
+        // 先找到当前用户的头像表的id
+        BmobQuery<BProfilePhoto> query = new BmobQuery<BProfilePhoto>();
+        query.addWhereEqualTo("userName", userName);
+        query.findObjects(new FindListener<BProfilePhoto>() {
+            @Override
+            public void done(List<BProfilePhoto> list, BmobException e) {
+                if (e==null){
+                    BmobFile bFile = list.get(0).getProfilePhotoFile();
+                    String url = bFile.getUrl();
+                    GaussianBlurFromUrl(url);
+
+                }
+            }
+        });
+    }
+
+
 
 }
 
