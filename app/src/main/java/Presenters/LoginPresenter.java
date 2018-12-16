@@ -20,8 +20,8 @@ public class LoginPresenter implements ILoginPresenter {
     }
 
 
-    private void successLogin(String userName) {
-        iLoginView.successLogin(userName);
+    private void successLogin(String userName, String userId) {
+        iLoginView.successLogin(userName, userId);
     }
 
     private void failLogin(){
@@ -41,7 +41,7 @@ public class LoginPresenter implements ILoginPresenter {
             public void done(BmobUser bmobUser, BmobException e) {
                 if(e==null) {
                     Log.e("fuck", "登录成功，用户ID为: "+bu.getObjectId() );
-                    successLogin(bu.getObjectId());
+                    successLogin(bu.getUsername(), bu.getObjectId());
                 }
                 else {
                     Log.e("fuck", "登录失败，LoginPresenter: "+e.toString() );

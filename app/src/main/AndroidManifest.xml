@@ -16,7 +16,7 @@
     <application
         android:name="Application.MyApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="共享错题本"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
