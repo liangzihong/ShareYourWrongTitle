@@ -49,11 +49,6 @@ public class LoginPresenter implements ILoginPresenter {
                 }
             }
         });
-
-
-
     }
-
-
 
 }

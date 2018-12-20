@@ -32,7 +32,7 @@ public class LoadGroupPresenter implements ILoadGroupPresenter {
 
         int size=GroupNames.length;
         for(int i=0;i<size;i++) {
-            Group tmp = new Group(GroupNames[i], ProfilePhotos[i], LastRecords[i]);
+            Group tmp = new Group(GroupNames[i],R.drawable.sample, LastRecords[i]);
             GroupList.add(tmp);
         }
 
