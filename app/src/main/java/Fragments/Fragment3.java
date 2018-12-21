@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentUris;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -18,12 +19,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -32,6 +35,13 @@ import com.example.liangzihong.viewpager.R;
 import java.io.File;
 
 import Activitys.WatchPictureActivity;
+import Application.MyApplication;
+import BmobModels.BProfilePhoto;
+import BmobModels.BWrongTitle;
+import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
+import cn.bmob.v3.listener.UploadFileListener;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -45,15 +55,22 @@ public class Fragment3 extends Fragment {
     private Uri imageUri=null;
     private File file;
 
+    private boolean isAlbum;
 
     private Button album_button;
     private Button camera_button;
+
+    private EditText editTag;
+    private EditText editContent;
+    private Button send_button;
+
     private ImageView imageView;
     private Activity myActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState){
 
+        imageUri = null;
         myActivity = this.getActivity();
 
         // 初始化一堆控件
@@ -61,6 +78,11 @@ public class Fragment3 extends Fragment {
         album_button = (Button)view.findViewById(R.id.view3_album_button);
         camera_button = (Button)view.findViewById(R.id.view3_camera_button);
         imageView = (ImageView)view.findViewById(R.id.view3_imageView);
+
+        editTag = (EditText)view.findViewById(R.id.view3_tag_edit);
+        editContent = (EditText)view.findViewById(R.id.view3_content_edit);
+        send_button = (Button)view.findViewById(R.id.view3_send_button);
+        isAlbum = false;
         init();
         return view;
     }
@@ -93,11 +115,185 @@ public class Fragment3 extends Fragment {
                     WatchPictureActivity.startPictureActivity( myActivity, imageUri.toString());
             }
         });
+
+        // 发送错题
+        // 选择框
+        send_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder normalDialog =
+                        new AlertDialog.Builder(myActivity);
+                normalDialog.setMessage("确定要发表吗");
+                normalDialog.setPositiveButton("确定",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                sendWrongTitle();
+                            }
+                        });
+                normalDialog.setNegativeButton("取消",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                // 显示
+                normalDialog.show();
+            }
+        });
     }
 
 
 
-    // 拍照看相册专用
+
+    // 发送错题
+    // 给WrongTitle赋值，然后上传即可
+    private void sendWrongTitle()
+    {
+        final MyApplication app = (MyApplication) myActivity.getApplication();
+
+
+        if (imageUri!=null)
+        {
+            // 因为如果 拍摄 和 从相册拿，两者的uri变为路径的方式不同，所以要分类讨论。
+            String imagePath;
+            if (isAlbum)
+                imagePath = getImagePath(imageUri,null);
+            else
+                imagePath = imageUri.getPath();
+            final File photo_file = new File(imagePath);
+            final BmobFile bFile = new BmobFile(photo_file);
+
+            final AlertDialog.Builder waitingDialogBuilder =
+                    new AlertDialog.Builder(myActivity);
+            waitingDialogBuilder.setTitle("正在上传");
+            waitingDialogBuilder.setMessage("请稍候");
+            final AlertDialog waitingDialog = waitingDialogBuilder.create();
+            waitingDialog.show();
+
+            bFile.uploadblock(new UploadFileListener() {
+                @Override
+                public void done(BmobException e) {
+                    if(e==null){
+                        BWrongTitle wrongTitle = new BWrongTitle();
+                        wrongTitle.setUserId(app.getCurrentUserId());
+                        wrongTitle.setContent( editContent.getText().toString() );
+                        wrongTitle.setTag( editTag.getText().toString() );
+                        wrongTitle.setPhoto(bFile);
+                        wrongTitle.save(new SaveListener<String>() {
+                            @Override
+                            public void done(String s, BmobException e) {
+                                if (e==null)
+                                {
+                                    waitingDialog.dismiss();
+
+                                    final AlertDialog.Builder normalDialog =
+                                            new AlertDialog.Builder(myActivity);
+                                    normalDialog.setTitle("系统信息");
+                                    normalDialog.setMessage("成功发布错题");
+
+                                    editContent.setText("");
+                                    editTag.setText("");
+                                    imageView.setImageResource(R.drawable.add_photo);
+                                    normalDialog.show();
+                                }
+                                else
+                                {
+                                    final AlertDialog.Builder normalDialog =
+                                            new AlertDialog.Builder(myActivity);
+                                    normalDialog.setTitle("系统信息");
+                                    normalDialog.setMessage("发布错题失败，请重新尝试");
+                                    normalDialog.show();
+                                }
+                            }
+                        });
+
+                    }else{
+                        final AlertDialog.Builder normalDialog =
+                                new AlertDialog.Builder(myActivity);
+                        normalDialog.setTitle("系统信息");
+                        normalDialog.setMessage("上传图片失败，请重新尝试");
+                        normalDialog.show();
+                    }
+
+                }
+
+                @Override
+                public void onProgress(Integer value) {
+                    // 返回的上传进度（百分比）
+                }
+            });
+
+        }
+
+        else {
+            BWrongTitle wrongTitle = new BWrongTitle();
+            wrongTitle.setUserId(app.getCurrentUserId());
+            wrongTitle.setContent( editContent.getText().toString() );
+            wrongTitle.setTag( editTag.getText().toString() );
+            wrongTitle.setPhoto(null);
+            wrongTitle.save(new SaveListener<String>() {
+                @Override
+                public void done(String s, BmobException e) {
+                    if (e==null)
+                    {
+                        final AlertDialog.Builder normalDialog =
+                                new AlertDialog.Builder(myActivity);
+                        normalDialog.setTitle("系统信息");
+                        normalDialog.setMessage("成功发布错题");
+                        normalDialog.show();
+                    }
+                    else
+                    {
+                        final AlertDialog.Builder normalDialog =
+                                new AlertDialog.Builder(myActivity);
+                        normalDialog.setTitle("系统信息");
+                        normalDialog.setMessage("发布错题失败，请重新尝试");
+                        normalDialog.show();
+                    }
+                }
+            });
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 拍照看相册专用--------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * 申请权限
@@ -155,10 +351,10 @@ public class Fragment3 extends Fragment {
         Intent intent=new Intent("android.media.action.IMAGE_CAPTURE");
         intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
         startActivityForResult(intent,TAKE_PHOTO);
+
+        isAlbum = false;
         return;
     }
-
-
 
     /**
      * 打开相册
@@ -278,6 +474,8 @@ public class Fragment3 extends Fragment {
         }
         else
             Toast.makeText(myActivity, "failed to get image", Toast.LENGTH_SHORT).show();
+
+        isAlbum = true;
     }
 
 }

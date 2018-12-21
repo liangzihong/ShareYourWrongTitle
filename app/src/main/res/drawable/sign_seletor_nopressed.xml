@@ -10,8 +10,8 @@
     <!-- 主体背景颜色值 -->
     <item android:bottom="1dp" android:right="1dp" android:top="1dp" android:left="1dp">
         <shape>
-            <gradient android:startColor="#c67fe7" android:centerColor="#c67fe7"
-                android:endColor="#c67fe7" android:type="linear" android:angle="90"
+            <gradient android:startColor="#cad2f1" android:centerColor="#cad2f1"
+                android:endColor="#cad2f1" android:type="linear" android:angle="90"
                 android:centerX="0.5" android:centerY="0.5" />
 
             <padding android:left="2dp" android:top="2dp" android:right="2dp"

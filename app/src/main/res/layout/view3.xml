@@ -54,12 +54,14 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/view3_tag_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:hint="输入标签"/>
 
             <EditText
+                android:id="@+id/view3_content_edit"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:minLines="5"
@@ -79,6 +81,7 @@
                     android:layout_weight="10"/>
 
                 <Button
+                    android:id="@+id/view3_send_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
