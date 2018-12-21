@@ -24,8 +24,7 @@
                 android:id="@+id/fragment1_profile"
                 android:layout_width="65dp"
                 android:layout_height="65dp"
-                android:layout_margin="5dp"
-                android:src="@drawable/pic1" />
+                android:layout_margin="5dp" />
 
         </LinearLayout>
 
@@ -40,7 +39,6 @@
                 android:id="@+id/Author_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="author"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 android:textColor="#000000"/>
@@ -49,7 +47,6 @@
                 android:id="@+id/fragment1_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1111111111111111111111111111111111111111111111111111111111111"
                 android:textSize="15sp"
                 android:textColor="#000000"/>
 
@@ -62,8 +59,7 @@
                 android:id="@+id/image"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/sample"/>
+                android:scaleType="fitXY"/>
 
 
             <Space
@@ -75,8 +71,7 @@
                 android:id="@+id/Title_Tags"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="tag"/>
+                android:textSize="15sp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

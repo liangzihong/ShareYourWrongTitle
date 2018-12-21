@@ -19,9 +19,19 @@ import com.example.liangzihong.viewpager.R;
 public class WatchPictureActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView image;
+    // 本地相册或者拍照
     public static void startPictureActivity(Context context, String StringOfUrlOfPic){
         Intent intent=new Intent(context,WatchPictureActivity.class);
         intent.putExtra("StringOfUrl",StringOfUrlOfPic);
+        intent.putExtra("way","uri");
+        context.startActivity(intent);
+    }
+
+    // 数据库中拿网址
+    public static void startPictureActivityByInternet(Context context, String url) {
+        Intent intent=new Intent(context,WatchPictureActivity.class);
+        intent.putExtra("StringOfUrl",url);
+        intent.putExtra("way","url");
         context.startActivity(intent);
     }
 
@@ -34,10 +44,20 @@ public class WatchPictureActivity extends BaseActivity implements View.OnClickLi
 
 
         Intent intent=getIntent();
-        String StringOfUrlOfPic=intent.getStringExtra("StringOfUrl");
-        Uri uri = Uri.parse(StringOfUrlOfPic);
+        String way = intent.getStringExtra("way");
+        switch (way){
+            case "uri":
+                String StringOfUrlOfPic=intent.getStringExtra("StringOfUrl");
+                Uri uri = Uri.parse(StringOfUrlOfPic);
+                image.setImageURI(uri);
+                break;
+            case "url":
+                String url = intent.getStringExtra("StringOfUrl");
+                Glide.with(this).load(url).into(image);
+                break;
+        }
 
-        image.setImageURI(uri);
+
 
 
     }
