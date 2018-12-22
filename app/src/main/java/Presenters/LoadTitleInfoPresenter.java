@@ -49,6 +49,7 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
                         info.setPhotoUrl(photoUrl);
                         info.setTag(tag);
                         info.setContent(content);
+                        info.setTitleId(wt.getObjectId());
                         arr.add(0,info);
                     }
 
@@ -73,7 +74,7 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
 
     @Override
     public List<TitleInfo> getTitleInfoList() {
-        return null;
+        return arr;
     }
 
     // 加载更多的 数据，从 arr逐个逐个加上去。

@@ -36,6 +36,7 @@
         <activity android:name="Activitys.LoginActivity"></activity>
         <activity android:name="Activitys.SignupActivity"></activity>
         <activity android:name="Activitys.StartActivity"></activity>
+        <activity android:name="Activitys.CommentPageActivity"></activity>
         <provider
             android:authorities="my.fileprovider"
             android:name="android.support.v4.content.FileProvider"

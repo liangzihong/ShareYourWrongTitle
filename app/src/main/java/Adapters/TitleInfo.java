@@ -5,6 +5,7 @@ package Adapters;
  */
 
 public class TitleInfo {
+    private String titleId;
     private String profileUrl;
     private String name;
     private String tag;
@@ -62,4 +63,11 @@ public class TitleInfo {
         this.userId = userId;
     }
 
+    public String getTitleId() {
+        return titleId;
+    }
+
+    public void setTitleId(String titleId) {
+        this.titleId = titleId;
+    }
 }

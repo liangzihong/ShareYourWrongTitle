@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,12 @@ import com.example.liangzihong.viewpager.R;
 
 import java.util.ArrayList;
 
+import Activitys.CommentPageActivity;
 import Adapters.TitleInfo;
 import Presenters.ILoadTitleInfoPresenter;
 import Presenters.LoadTitleInfoPresenter;
+
+import static android.view.ViewGroup.FOCUS_BLOCK_DESCENDANTS;
 
 /**
  * Created by Liang Zihong on 2018/2/8.
@@ -70,11 +74,12 @@ public class Fragment1 extends Fragment implements AdapterView.OnItemClickListen
 
 
     @Override
+    // 触发详细页面
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ArrayList<TitleInfo> groupList = (ArrayList<TitleInfo>) iLoadTitleInfoPresenter.getTitleInfoList();
-        TitleInfo chosenTitleInfo = groupList.get(position);
-        Toast.makeText(getContext(), chosenTitleInfo.getContent(), Toast.LENGTH_SHORT).show();
-
+        ArrayList<TitleInfo> titleInfoList = (ArrayList<TitleInfo>) iLoadTitleInfoPresenter.getTitleInfoList();
+        TitleInfo chosenTitleInfo = titleInfoList.get(position);
+        Log.e("fuck", "onItemClick: "+id+"" );
+//        CommentPageActivity.startCommentPageActivity(myActivity, chosenTitleInfo);
     }
 
 
@@ -90,16 +95,7 @@ public class Fragment1 extends Fragment implements AdapterView.OnItemClickListen
 
     @Override
     public void setTitleInfoAdapter(ArrayAdapter<TitleInfo> adapter) {
-        final AlertDialog.Builder waitingDialogBuilder =
-                new AlertDialog.Builder(myActivity);
-        waitingDialogBuilder.setTitle("加载中");
-        waitingDialogBuilder.setMessage("正在加载错题，请稍等哦~~");
-        AlertDialog waitingDialog = waitingDialogBuilder.create();
-        waitingDialog.show();
-
         listView.setAdapter(adapter);
-
-        waitingDialog.dismiss();
     }
 }
 

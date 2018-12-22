@@ -16,6 +16,7 @@ import com.example.liangzihong.viewpager.R;
 import java.io.File;
 import java.util.List;
 
+import Activitys.CommentPageActivity;
 import Activitys.WatchPictureActivity;
 import BmobModels.BProfilePhoto;
 import MyUtils.util1;
@@ -58,7 +59,7 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
             viewHolder.name=(TextView)view.findViewById(R.id.Author_Name);
             viewHolder.content = (TextView)view.findViewById(R.id.fragment1_content);
             viewHolder.photo=(ImageView)view.findViewById(R.id.image);
-
+            viewHolder.comment = (ImageView)view.findViewById(R.id.fragment1_comment);
 
             view.setTag(viewHolder);
         }
@@ -121,6 +122,14 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
             }
         });
 
+        // 进入评论页面
+        viewHolder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommentPageActivity.startCommentPageActivity(smallContext, titleInfo);
+            }
+        });
+
 
         return view;
     }
@@ -132,6 +141,7 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
         TextView name;
         TextView content;
         ImageView photo;
+        ImageView comment;
     }
 
 }
