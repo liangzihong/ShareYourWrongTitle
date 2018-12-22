@@ -71,6 +71,7 @@ public class Fragment4 extends Fragment {
     public static final int TAKE_PHOTO=0;
     private Uri imageUri=null;
     private File file;
+    private String filePath;
     private Activity myActivity;
 
     private CircleImageView imageView;
@@ -249,6 +250,7 @@ public class Fragment4 extends Fragment {
         try{
 
             file.createNewFile();
+            filePath = file.getPath();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -298,7 +300,7 @@ public class Fragment4 extends Fragment {
                     catch (Exception e){e.printStackTrace();}
 
                     // 将照片传上服务器
-                    uploadProfileToServer(new File(imageUri.getPath()));
+                    uploadProfileToServer(new File(filePath));
 
 
                 }

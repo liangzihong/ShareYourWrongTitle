@@ -54,6 +54,7 @@ public class Fragment3 extends Fragment {
     public static final int TAKE_PHOTO=0;
     private Uri imageUri=null;
     private File file;
+    private String filePath;
 
     private boolean isAlbum;
 
@@ -159,9 +160,10 @@ public class Fragment3 extends Fragment {
             // 因为如果 拍摄 和 从相册拿，两者的uri变为路径的方式不同，所以要分类讨论。
             String imagePath;
             if (isAlbum)
-                imagePath = getImagePath(imageUri,null);
-            else
-                imagePath = imageUri.getPath();
+                imagePath = getImagePath(imageUri, null);
+            else {
+                imagePath = filePath;
+            }
             final File photo_file = new File(imagePath);
             final BmobFile bFile = new BmobFile(photo_file);
 
@@ -187,7 +189,6 @@ public class Fragment3 extends Fragment {
                                 if (e==null)
                                 {
                                     waitingDialog.dismiss();
-
                                     final AlertDialog.Builder normalDialog =
                                             new AlertDialog.Builder(myActivity);
                                     normalDialog.setTitle("系统信息");
@@ -200,6 +201,8 @@ public class Fragment3 extends Fragment {
                                 }
                                 else
                                 {
+                                    waitingDialog.dismiss();
+
                                     final AlertDialog.Builder normalDialog =
                                             new AlertDialog.Builder(myActivity);
                                     normalDialog.setTitle("系统信息");
@@ -209,7 +212,9 @@ public class Fragment3 extends Fragment {
                             }
                         });
 
-                    }else{
+                    }
+                    else
+                    {
                         final AlertDialog.Builder normalDialog =
                                 new AlertDialog.Builder(myActivity);
                         normalDialog.setTitle("系统信息");
@@ -335,8 +340,10 @@ public class Fragment3 extends Fragment {
         //创建  图片将要存放的位置
         file=new File("/sdcard/Pictures/",name);
         try{
-
             file.createNewFile();
+            filePath = file.getPath();
+            Log.e("fuck", "goTakingPhoto: "+ file.getPath());
+            Log.e("fuck", "goTakingPhoto: "+ file.getAbsolutePath());
         }catch (Exception e){
             e.printStackTrace();
         }
