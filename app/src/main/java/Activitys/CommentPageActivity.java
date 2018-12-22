@@ -107,9 +107,9 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         content.setText(titleInfo.getContent());
 
 
+        // 获取评论列表，然后加载适配器。
         iLoadCommentInfoPresenter = new LoadCommentInfoPresenter(this);
         iLoadCommentInfoPresenter.loadCommentInfo(titleInfo.getTitleId());
-        // 获取评论列表，然后加载适配器。
 
 
     }
