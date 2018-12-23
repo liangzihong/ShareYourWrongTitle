@@ -58,17 +58,22 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_page);
 
+        photo = (ImageView) findViewById(R.id.comment_page_photo);
+        content = (TextView) findViewById(R.id.comment_page_content);
+        myListView = (MyListView)findViewById(R.id.comment_page_MyListView);
+        write_edit = (EditText)findViewById(R.id.comment_page_editText);
+        send_button = (Button)findViewById(R.id.comment_page_send_button);
+
+        iLoadCommentInfoPresenter = new LoadCommentInfoPresenter(this);
+        iLoadCommentInfoPresenter.loadCommentInfo(titleInfo.getTitleId());
+        // 获取评论列表，然后加载适配器。
 
         init();
     }
 
 
     private void init(){
-        photo = (ImageView) findViewById(R.id.comment_page_photo);
-        content = (TextView) findViewById(R.id.comment_page_content);
-        myListView = (MyListView)findViewById(R.id.comment_page_MyListView);
-        write_edit = (EditText)findViewById(R.id.comment_page_editText);
-        send_button = (Button)findViewById(R.id.comment_page_send_button);
+
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,9 +112,7 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         content.setText(titleInfo.getContent());
 
 
-        // 获取评论列表，然后加载适配器。
-        iLoadCommentInfoPresenter = new LoadCommentInfoPresenter(this);
-        iLoadCommentInfoPresenter.loadCommentInfo(titleInfo.getTitleId());
+
 
 
     }
@@ -125,9 +128,12 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         final AlertDialog waitingDialog = waitingDialogBuilder.create();
         waitingDialog.show();
 
-        MyApplication app = (MyApplication)getApplication();
+//        MyApplication app = (MyApplication)getApplication();
+
+        String CurrentUserId = MyApplication.CurrentUserId;
+
         final BComment bComment = new BComment();
-        bComment.setUserId(app.getCurrentUserId());
+        bComment.setUserId(CurrentUserId);
         bComment.setTitleId(titleInfo.getTitleId());
         bComment.setComment( write_edit.getText()+"");
         bComment.save(new SaveListener<String>() {

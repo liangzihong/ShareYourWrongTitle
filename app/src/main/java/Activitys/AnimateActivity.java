@@ -18,7 +18,6 @@ public class AnimateActivity extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bmob.initialize(this, "639a960d0b197dc4f960edca51cd6a9e");
         final View view = View.inflate(this, R.layout.animatelayout, null);
         setContentView(view);
 

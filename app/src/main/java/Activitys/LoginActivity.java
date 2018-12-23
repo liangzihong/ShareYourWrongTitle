@@ -98,9 +98,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void successLogin(String userName, String userId) {
 
-        MyApplication app = (MyApplication) getApplication();
-        app.setCurrentUserName(userName);
-        app.setCurrentUserId(userId);
+//        MyApplication app = (MyApplication) getApplication();
+//        app.setCurrentUserName(userName);
+//        app.setCurrentUserId(userId);
+
+        MyApplication.CurrentUserId = userId;
+        MyApplication.CurrentUserName =userName;
 
         Toast.makeText(this, "进入共享错题本", Toast.LENGTH_SHORT).show();
         Intent intent1=new Intent(this,MainActivity.class);

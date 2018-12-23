@@ -33,7 +33,7 @@ public class CommentInfoAdapter extends ArrayAdapter<CommentInfo> {
     private Context smallContext;
 
 
-    // 在这里得到的 CommentInfo都是没有用户名和用户头像的，所以 加载时，需要到数据库查找。
+    // 在这里得到的 TitleInfo都是没有用户名和用户头像的，所以 加载时，需要到数据库查找。
     public CommentInfoAdapter(Context context, int textViewResourceId, List<CommentInfo> list) {
         super(context, textViewResourceId, list);
         resourceId=textViewResourceId;

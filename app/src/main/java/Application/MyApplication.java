@@ -8,9 +8,9 @@ import android.content.Context;
  */
 
 public class MyApplication extends Application {
-    private String CurrentUserName = null;
-    private String CurrentUserId = null;
-    private static Context context;
+    public static String CurrentUserName = null;
+    public static String CurrentUserId = null;
+    public static Context context;
 
     @Override
     public void onCreate() {
@@ -19,7 +19,7 @@ public class MyApplication extends Application {
     }
 
     public void setCurrentUserName(String currentUserName){
-        this.CurrentUserName = currentUserName;
+        CurrentUserName = currentUserName;
     }
 
     public static Context getContext() {
@@ -27,7 +27,7 @@ public class MyApplication extends Application {
     }
 
     public String getCurrentUserName(){
-        return this.CurrentUserName;
+        return CurrentUserName;
     }
 
     public String getCurrentUserId() {
@@ -35,6 +35,6 @@ public class MyApplication extends Application {
     }
 
     public void setCurrentUserId(String currentUserId){
-        this.CurrentUserId = currentUserId;
+        CurrentUserId = currentUserId;
     }
 }

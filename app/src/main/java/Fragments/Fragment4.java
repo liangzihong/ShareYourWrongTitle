@@ -101,8 +101,11 @@ public class Fragment4 extends Fragment {
     // 初始化
     private void init() {
 
-        MyApplication app = (MyApplication) getActivity().getApplication();
-        NameTextView.setText(app.getCurrentUserName());
+//        MyApplication app = (MyApplication) getActivity().getApplication();
+
+        String currentUserName = MyApplication.CurrentUserName;
+
+        NameTextView.setText(currentUserName);
 
         // 换头像
         ProfileButton.setOnClickListener(new View.OnClickListener() {
@@ -142,8 +145,8 @@ public class Fragment4 extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (et.getText().equals("") == false) {
-
-                            final MyApplication app = (MyApplication) getActivity().getApplication();
+//
+//                            final MyApplication app = (MyApplication) getActivity().getApplication();
                             // user表的update
                             // 如果改名成功，需要在 MyApplication改，在 bmob中改，在textName中改
                             final String newName = et.getText()+"";
@@ -154,14 +157,14 @@ public class Fragment4 extends Fragment {
                                 @Override
                                 public void done(BmobException e) {
                                     if (e == null) {   // 更新成功
-                                        app.setCurrentUserName(newName);
+                                        MyApplication.CurrentUserName =newName;
                                         NameTextView.setText(newName);
                                         new AlertDialog.Builder(myActivity).setTitle("更名成功")
                                                 .setMessage("你的用户名已修改，请记住哦~~").show();
                                     }
                                     else{
                                         // 不和旧名一样，但是失败，说明有名字重合
-                                        if (newName.equals(app.getCurrentUserName()) == false){
+                                        if (newName.equals(MyApplication.CurrentUserName) == false){
                                             new AlertDialog.Builder(myActivity).setTitle("更名失败")
                                                     .setMessage("你想更改的名字已经被注册了哦~~\n请换另一个名字吧~~").show();
                                         }
@@ -399,12 +402,12 @@ public class Fragment4 extends Fragment {
 
     // 更新头像
     private void uploadProfileToServer(final File file) {
-        final MyApplication app = (MyApplication) myActivity.getApplication();
-
+//        final MyApplication app = (MyApplication) myActivity.getApplication();
+        final String CurrentUserId = MyApplication.CurrentUserId;
 
         // 根据id 获取到数据表的项， 然后获取头像的objectid，然后上传头像图片，再根据objectId进行数据库头像的修改
         BmobQuery<BProfilePhoto> query = new BmobQuery<BProfilePhoto>();
-        query.addWhereEqualTo("userId", app.getCurrentUserId());
+        query.addWhereEqualTo("userId", CurrentUserId);
         query.findObjects(new FindListener<BProfilePhoto>() {
             @Override
             public void done(List<BProfilePhoto> list, BmobException e) {
@@ -493,10 +496,11 @@ public class Fragment4 extends Fragment {
 
     // 进入加载原始头像
     private void loadUserProfilePhoto(){
-        MyApplication app = (MyApplication) myActivity.getApplication();
+//        MyApplication app = (MyApplication) myActivity.getApplication();
+        String CurrentUserId = MyApplication.CurrentUserId;
 
         BmobQuery<BProfilePhoto> query = new BmobQuery<BProfilePhoto>();
-        query.addWhereEqualTo("userId", app.getCurrentUserId());
+        query.addWhereEqualTo("userId", CurrentUserId);
         query.findObjects(new FindListener<BProfilePhoto>() {
             @Override
             public void done(List<BProfilePhoto> list, BmobException e) {

@@ -123,12 +123,12 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
         });
 
         // 进入评论页面
-        viewHolder.comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CommentPageActivity.startCommentPageActivity(smallContext, titleInfo);
-            }
-        });
+//        viewHolder.comment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                CommentPageActivity.startCommentPageActivity(smallContext, titleInfo);
+//            }
+//        });
 
 
         return view;

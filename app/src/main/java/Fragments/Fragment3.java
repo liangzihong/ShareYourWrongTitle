@@ -152,7 +152,8 @@ public class Fragment3 extends Fragment {
     // 给WrongTitle赋值，然后上传即可
     private void sendWrongTitle()
     {
-        final MyApplication app = (MyApplication) myActivity.getApplication();
+        final String userId = MyApplication.CurrentUserId;
+//        final MyApplication app = (MyApplication) myActivity.getApplication();
 
 
         if (imageUri!=null)
@@ -179,7 +180,7 @@ public class Fragment3 extends Fragment {
                 public void done(BmobException e) {
                     if(e==null){
                         BWrongTitle wrongTitle = new BWrongTitle();
-                        wrongTitle.setUserId(app.getCurrentUserId());
+                        wrongTitle.setUserId(userId);
                         wrongTitle.setContent( editContent.getText().toString() );
                         wrongTitle.setTag( editTag.getText().toString() );
                         wrongTitle.setPhoto(bFile);
@@ -206,7 +207,7 @@ public class Fragment3 extends Fragment {
                                     final AlertDialog.Builder normalDialog =
                                             new AlertDialog.Builder(myActivity);
                                     normalDialog.setTitle("系统信息");
-                                    normalDialog.setMessage("发布错题失败，请重新尝试");
+                                    normalDialog.setMessage("发布错题失败，请重新尝试"+e.toString());
                                     normalDialog.show();
                                 }
                             }
@@ -234,7 +235,7 @@ public class Fragment3 extends Fragment {
 
         else {
             BWrongTitle wrongTitle = new BWrongTitle();
-            wrongTitle.setUserId(app.getCurrentUserId());
+            wrongTitle.setUserId(userId);
             wrongTitle.setContent( editContent.getText().toString() );
             wrongTitle.setTag( editTag.getText().toString() );
             wrongTitle.setPhoto(null);
