@@ -1,6 +1,7 @@
 package Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,40 +63,16 @@ public class CommentInfoAdapter extends ArrayAdapter<CommentInfo> {
             viewHolder=(CommentInfoAdapter.ViewHolder) view.getTag();
         }
 
-        // 从数据库中查找姓名，并且加载到名字中
-        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
-        query.addWhereEqualTo("objectId", commentInfo.getUserId());
-        query.findObjects(new FindListener<BmobUser>() {
-            @Override
-            public void done(List<BmobUser> list, BmobException e) {
-                if (e==null){
-                    String username = list.get(0).getUsername();
-                    commentInfo.setName(username);
-                    viewHolder.name.setText(commentInfo.getName());
-                }
-                else{
-                }
-            }
-        });
 
-        // 从数据库中查找头像，并且加载到头像图片中
-        BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
-        query2.addWhereEqualTo("userId", commentInfo.getUserId());
-        query2.findObjects(new FindListener<BProfilePhoto>() {
-            @Override
-            public void done(List<BProfilePhoto> list, BmobException e) {
-                if (e==null){
-                    BmobFile bFile = list.get(0).getProfilePhotoFile();
-                    String url = bFile.getUrl();
-                    commentInfo.setProfileUrl(url);
-                    Glide.with(smallContext).load(commentInfo.getProfileUrl()).into(viewHolder.profile);
-
-                }
-            }
-        });
-
-        // 评论的话
+//        Log.e("fuck", "getView: 这里是 CommentInfoAdapter负责加载 评论");
         viewHolder.comment.setText(commentInfo.getComment());
+
+        viewHolder.name.setText(commentInfo.getName());
+
+        Glide.with(smallContext).load(commentInfo.getProfileUrl()).into(viewHolder.profile);
+
+
+
 
         return view;
     }

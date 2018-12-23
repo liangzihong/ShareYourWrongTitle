@@ -25,10 +25,11 @@
 
                 <ImageView
                     android:id="@+id/comment_page_photo"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:src="@drawable/pic1"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="centerCrop"
+                    android:layout_gravity="center"/>
 
                 <TextView
                     android:id="@+id/comment_page_content"

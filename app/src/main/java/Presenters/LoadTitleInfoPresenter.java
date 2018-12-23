@@ -1,5 +1,7 @@
 package Presenters;
 
+import android.util.Log;
+
 import com.example.liangzihong.viewpager.R;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import Adapters.TitleInfo;
 import Adapters.TitleInfoAdapter;
 import BmobModels.BWrongTitle;
 import Fragments.ILoadTitleInfoFragment;
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -25,11 +28,17 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
     final private List<TitleInfo> tmp = new ArrayList<>();
 
     public LoadTitleInfoPresenter(ILoadTitleInfoFragment fragment){
+        Bmob.initialize(fragment.getContext(), "68d5baca3da4447b7be957110d9627f3");
         iFragment = fragment;
     }
 
     @Override
     public void loadTitleInfo() {
+
+        Log.e("fuck", "done: 这里是loadTitleInfoPresenter" );
+        adapter = new TitleInfoAdapter(iFragment.getContext(), R.layout.used_by_fragment1_layout,tmp);
+        iFragment.setTitleInfoAdapter(adapter);
+
         BmobQuery<BWrongTitle> bmobQuery = new BmobQuery<>();
         bmobQuery.findObjects(new FindListener<BWrongTitle>() {
             @Override
@@ -60,8 +69,7 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
                         if (i>=3)
                             break;
                     }
-                    adapter = new TitleInfoAdapter(iFragment.getContext(), R.layout.used_by_fragment1_layout,tmp);
-                    iFragment.setTitleInfoAdapter(adapter);
+                    adapter.notifyDataSetChanged();
 
                 }
                 else   // 查找错题失败

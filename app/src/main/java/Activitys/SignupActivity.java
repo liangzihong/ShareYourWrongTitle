@@ -14,6 +14,7 @@ import com.example.liangzihong.viewpager.R;
 
 import Presenters.ISignupPresenter;
 import Presenters.SignupPresenter;
+import cn.bmob.v3.Bmob;
 
 /**
  * Created by Liang Zihong on 2018/2/26.
@@ -37,6 +38,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_layout);
+        Bmob.initialize(this, "68d5baca3da4447b7be957110d9627f3");
 
         init();
 

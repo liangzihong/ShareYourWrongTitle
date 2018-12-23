@@ -24,6 +24,7 @@ import BmobModels.BWrongTitle;
 import MyUi.MyListView;
 import Presenters.ILoadCommentInfoPresenter;
 import Presenters.LoadCommentInfoPresenter;
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
@@ -35,7 +36,7 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
 
     private ILoadCommentInfoPresenter iLoadCommentInfoPresenter;
 
-    private static TitleInfo titleInfo;
+    private  TitleInfo titleInfo;
     private ImageView photo;
     private TextView content;
     private MyListView myListView;
@@ -47,7 +48,13 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
     public static void startCommentPageActivity(Context context, TitleInfo aTitleInfo)
     {
         Intent intent=new Intent(context, CommentPageActivity.class);
-        titleInfo = aTitleInfo;
+        intent.putExtra("titleId", aTitleInfo.getTitleId());
+        intent.putExtra("profileUrl", aTitleInfo.getProfileUrl());
+        intent.putExtra("name", aTitleInfo.getName());
+        intent.putExtra("tag", aTitleInfo.getTag());
+        intent.putExtra("content", aTitleInfo.getContent());
+        intent.putExtra("photoUrl", aTitleInfo.getPhotoUrl());
+        intent.putExtra("userId", aTitleInfo.getUserId());
         context.startActivity(intent);
     }
 
@@ -55,8 +62,25 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Log.e("fuck", "oncreate: 这里是 CommentPageActivity生成");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_page);
+
+        Bmob.initialize(this, "68d5baca3da4447b7be957110d9627f3");
+
+        Intent intent = getIntent();
+        titleInfo = new TitleInfo();
+        titleInfo.setTitleId(intent.getStringExtra("titleId"));
+        titleInfo.setProfileUrl(intent.getStringExtra("profileUrl"));
+        titleInfo.setName(intent.getStringExtra("name"));
+        titleInfo.setTag(intent.getStringExtra("tag"));
+        titleInfo.setContent(intent.getStringExtra("content"));
+        titleInfo.setPhotoUrl(intent.getStringExtra("photoUrl"));
+        titleInfo.setUserId(intent.getStringExtra("userId"));
+
+
 
         photo = (ImageView) findViewById(R.id.comment_page_photo);
         content = (TextView) findViewById(R.id.comment_page_content);
@@ -64,15 +88,23 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         write_edit = (EditText)findViewById(R.id.comment_page_editText);
         send_button = (Button)findViewById(R.id.comment_page_send_button);
 
+
+        init();
+
         iLoadCommentInfoPresenter = new LoadCommentInfoPresenter(this);
         iLoadCommentInfoPresenter.loadCommentInfo(titleInfo.getTitleId());
         // 获取评论列表，然后加载适配器。
 
-        init();
     }
 
 
-    private void init(){
+    private void init() {
+        Log.e("fuck", "init: 这里是 CommentPageActivity的init");
+
+
+        Glide.with(this).load(titleInfo.getPhotoUrl()).into(photo);
+        content.setText(titleInfo.getContent());
+
 
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +112,8 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
                 WatchPictureActivity.startPictureActivityByInternet(CommentPageActivity.this, titleInfo.getPhotoUrl());
             }
         });
+
+
 
         send_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,8 +142,6 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
 
 
 
-        Glide.with(this).load(titleInfo.getPhotoUrl()).into(photo);
-        content.setText(titleInfo.getContent());
 
 
 
@@ -155,6 +187,8 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
                 else
                 {
                     Log.e("fuck", "done: 失败" );
+                    Log.e("fuck", "发布评论失败,用户Id为"+bComment.getUserId() );
+
                     waitingDialog.dismiss();
 
                     final AlertDialog.Builder normalDialog =

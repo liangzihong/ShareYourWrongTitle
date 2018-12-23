@@ -38,6 +38,7 @@ import Activitys.WatchPictureActivity;
 import Application.MyApplication;
 import BmobModels.BProfilePhoto;
 import BmobModels.BWrongTitle;
+import cn.bmob.v3.Bmob;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -71,6 +72,7 @@ public class Fragment3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState){
 
+        Bmob.initialize(getActivity(), "68d5baca3da4447b7be957110d9627f3");
         imageUri = null;
         myActivity = this.getActivity();
 

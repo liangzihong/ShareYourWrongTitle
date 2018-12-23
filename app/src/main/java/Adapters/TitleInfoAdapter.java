@@ -78,31 +78,32 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
                     String username = list.get(0).getUsername();
                     titleInfo.setName(username);
                     viewHolder.name.setText(titleInfo.getName());
+                    // 从数据库中查找头像，并且加载到头像图片中
+                    BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
+                    query2.addWhereEqualTo("userId", titleInfo.getUserId());
+                    query2.findObjects(new FindListener<BProfilePhoto>() {
+                        @Override
+                        public void done(List<BProfilePhoto> list, BmobException e) {
+                            if (e==null){
+                                BmobFile bFile = list.get(0).getProfilePhotoFile();
+                                String url = bFile.getUrl();
+                                titleInfo.setProfileUrl(url);
+                                Glide.with(smallContext).load(titleInfo.getProfileUrl()).into(viewHolder.profile);
+
+                            }
+                        }
+                    });
+
+                    viewHolder.tag.setText("标签:"+titleInfo.getTag());
+                    viewHolder.content.setText(titleInfo.getContent());
+                    Glide.with(smallContext).load(titleInfo.getPhotoUrl()).into(viewHolder.photo);
                 }
                 else{
                 }
             }
         });
 
-        // 从数据库中查找头像，并且加载到头像图片中
-        BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
-        query2.addWhereEqualTo("userId", titleInfo.getUserId());
-        query2.findObjects(new FindListener<BProfilePhoto>() {
-            @Override
-            public void done(List<BProfilePhoto> list, BmobException e) {
-                if (e==null){
-                    BmobFile bFile = list.get(0).getProfilePhotoFile();
-                    String url = bFile.getUrl();
-                    titleInfo.setProfileUrl(url);
-                    Glide.with(smallContext).load(titleInfo.getProfileUrl()).into(viewHolder.profile);
 
-                }
-            }
-        });
-
-        viewHolder.tag.setText("标签:"+titleInfo.getTag());
-        viewHolder.content.setText(titleInfo.getContent());
-        Glide.with(smallContext).load(titleInfo.getPhotoUrl()).into(viewHolder.photo);
 
 
         // 打开照片应该如何打开。
@@ -123,12 +124,12 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
         });
 
         // 进入评论页面
-//        viewHolder.comment.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                CommentPageActivity.startCommentPageActivity(smallContext, titleInfo);
-//            }
-//        });
+        viewHolder.comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CommentPageActivity.startCommentPageActivity(smallContext, titleInfo);
+            }
+        });
 
 
         return view;
