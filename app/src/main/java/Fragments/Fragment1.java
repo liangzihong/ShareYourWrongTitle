@@ -59,25 +59,25 @@ public class Fragment1 extends Fragment implements  ILoadTitleInfoFragment{
 
         iLoadTitleInfoPresenter = new LoadTitleInfoPresenter(this);
         iLoadTitleInfoPresenter.loadTitleInfo();
-//
-//        // 当拉到最底时，再加载
-//        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
-//            //AbsListView view 这个view对象就是listview
-//            @Override
-//            public void onScrollStateChanged(AbsListView view, int scrollState) {
-//                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
-//                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
-//                        iLoadTitleInfoPresenter.loadMore();
-////                        Toast.makeText(myActivity, "你到底部了", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            }
-//            @Override
-//            public void onScroll(AbsListView view, int firstVisibleItem,
-//                                 int visibleItemCount, int totalItemCount) {
-//
-//            }
-//        });
+
+        // 当拉到最底时，再加载
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            //AbsListView view 这个view对象就是listview
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                    if (view.getLastVisiblePosition() == view.getCount() - 1) {
+                        iLoadTitleInfoPresenter.loadMore();
+//                        Toast.makeText(myActivity, "你到底部了", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+
+            }
+        });
 
     }
 

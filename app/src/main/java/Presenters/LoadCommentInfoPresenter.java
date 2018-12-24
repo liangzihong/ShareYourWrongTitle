@@ -33,6 +33,9 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
     final private List<CommentInfo> arr = new ArrayList<>();
     final private List<CommentInfo> tmp = new ArrayList<>();
 
+    final Integer now_cnts[] = new Integer[1];
+
+
     public LoadCommentInfoPresenter(ILoadCommentInfoActivity activity)
     {
         iActivity = activity;
@@ -55,13 +58,9 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
                 if (e == null)
                 {
                     Log.e("fuck", "loadCommentInfo: 这里是loadCommentInfoPresenter 查找评论成功" );
-                    for(int i=0;i<bCommentList.size();i++)
-                    {
-                        try {
-                            Thread.sleep( 500 );
-                        } catch (Exception ee){
-                            System.exit( 0 ); //退出程序
-                        }
+                    final List<CommentInfo> tmp_list = new ArrayList<CommentInfo>();
+                    for(int i=0;i<bCommentList.size();i++) {
+
                         BComment bComment = bCommentList.get(i);
                         String userId = bComment.getUserId();
                         String titleId = bComment.getTitleId();
@@ -70,6 +69,16 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
                         final CommentInfo info = new CommentInfo();
                         info.setUserId(userId);
                         info.setComment(comment);
+                        tmp_list.add(info);
+                    }
+
+
+                    final int all_cnt = tmp_list.size();
+                    now_cnts[0] = 0;
+                    for (int i=0;i<tmp_list.size();i++)
+                    {
+                        final CommentInfo info = tmp_list.get(i);
+                        final int nowCnt = i;
 
                         // 先找姓名
                         BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
@@ -97,8 +106,16 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
 
                                         arr.add(0,info);
                                         tmp.add(0,info);
-                                        Log.e("fuck", "加载完一条评论");
-                                        adapter.notifyDataSetChanged();
+//                                        Log.e("fuck", "加载完一条评论");
+
+                                        Log.e("fuck", "加载评论，序号是"+nowCnt+"" );
+                                        Log.e("fuck", "现在是第"+now_cnts[0]+"条评论" );
+
+                                        now_cnts[0]++;
+
+                                        if (now_cnts[0] == all_cnt)
+                                            adapter.notifyDataSetChanged();
+
                                     }
                                 });
                             }

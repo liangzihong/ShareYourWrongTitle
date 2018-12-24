@@ -45,6 +45,13 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
 
 
     @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+        Log.e("fuck", "notifyDataSetChanged: 这里是titleInfoAdapter" );
+        Log.e("fuck", "titleInfoAdapter的线程号"+ android.os.Process.myPid() );
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         final TitleInfo titleInfo=getItem(position);
@@ -68,40 +75,16 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
             viewHolder=(TitleInfoAdapter.ViewHolder) view.getTag();
         }
 
-        // 从数据库中查找姓名，并且加载到名字中
-        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
-        query.addWhereEqualTo("objectId", titleInfo.getUserId());
-        query.findObjects(new FindListener<BmobUser>() {
-            @Override
-            public void done(List<BmobUser> list, BmobException e) {
-                if (e==null){
-                    String username = list.get(0).getUsername();
-                    titleInfo.setName(username);
-                    viewHolder.name.setText(titleInfo.getName());
-                    // 从数据库中查找头像，并且加载到头像图片中
-                    BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
-                    query2.addWhereEqualTo("userId", titleInfo.getUserId());
-                    query2.findObjects(new FindListener<BProfilePhoto>() {
-                        @Override
-                        public void done(List<BProfilePhoto> list, BmobException e) {
-                            if (e==null){
-                                BmobFile bFile = list.get(0).getProfilePhotoFile();
-                                String url = bFile.getUrl();
-                                titleInfo.setProfileUrl(url);
-                                Glide.with(smallContext).load(titleInfo.getProfileUrl()).into(viewHolder.profile);
 
-                            }
-                        }
-                    });
 
-                    viewHolder.tag.setText("标签:"+titleInfo.getTag());
-                    viewHolder.content.setText(titleInfo.getContent());
-                    Glide.with(smallContext).load(titleInfo.getPhotoUrl()).into(viewHolder.photo);
-                }
-                else{
-                }
-            }
-        });
+
+        viewHolder.name.setText(titleInfo.getName());
+        viewHolder.tag.setText("标签:"+titleInfo.getTag());
+        viewHolder.content.setText(titleInfo.getContent());
+        Glide.with(smallContext).load(titleInfo.getPhotoUrl()).into(viewHolder.photo);
+        Glide.with(smallContext).load(titleInfo.getProfileUrl()).into(viewHolder.profile);
+
+
 
 
 
