@@ -12,11 +12,12 @@ import cn.bmob.v3.Bmob;
 public class MyApplication extends Application {
     public static String CurrentUserName = null;
     public static String CurrentUserId = null;
+    public static String CurrentProfileUrl = null;
     public static Context context;
 
     @Override
     public void onCreate() {
-        Bmob.initialize(this, "68d5baca3da4447b7be957110d9627f3");
+        Bmob.initialize(this, "4bb218fd080af2496d95acc60e212704");
         context = getApplicationContext();
         super.onCreate();
     }

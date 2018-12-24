@@ -38,7 +38,7 @@ public class SignupPresenter implements ISignupPresenter {
         Log.e("fuck", "注册成功: 用户id为"+ userId );
 
         // 从drawable变成file需要经过 drawable -> bitmap -> file的过程，所以在util中解决，然后上传到服务器
-        final File file =util1.drawableToFile(MyApplication.getContext(), R.drawable.unknown_profile, "unknowprofile.png");
+        final File file =util1.drawableToFile(MyApplication.getContext(), R.drawable.unknown_profile, "unknowprofile2.png");
         final BmobFile bFile = new BmobFile(file);
 //        Log.e("fuck", "successSignup:文件名字为"+ file.getAbsolutePath() );
 
@@ -66,7 +66,7 @@ public class SignupPresenter implements ISignupPresenter {
 //                    bmobFile.getFileUrl()--返回的上传文件的完整地址
 //                    toast("上传文件成功:" + bmobFile.getFileUrl());
                 }else{
-                    Toast.makeText(MyApplication.getContext(), "初始化头像时上传图片失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyApplication.getContext(), "初始化头像时上传图片失败"+e.toString(), Toast.LENGTH_SHORT).show();
                 }
 
             }

@@ -39,9 +39,8 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
     public LoadCommentInfoPresenter(ILoadCommentInfoActivity activity)
     {
         iActivity = activity;
-        Bmob.initialize(activity.getContext(), "68d5baca3da4447b7be957110d9627f3");
+        Bmob.initialize(activity.getContext(), "4bb218fd080af2496d95acc60e212704");
     }
-
 
     @Override
     public void loadCommentInfo(String titleId) {
@@ -65,10 +64,14 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
                         String userId = bComment.getUserId();
                         String titleId = bComment.getTitleId();
                         String comment = bComment.getComment();
+                        String profileUrl = bComment.getProfileUrl();
+                        String userName = bComment.getUserName();
 
                         final CommentInfo info = new CommentInfo();
                         info.setUserId(userId);
                         info.setComment(comment);
+                        info.setProfileUrl(profileUrl);
+                        info.setName(userName);
                         tmp_list.add(info);
                     }
 

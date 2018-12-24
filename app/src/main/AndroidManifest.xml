@@ -17,7 +17,7 @@
         android:name="Application.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon"
-        android:label="共享错题本"
+        android:label="共享错题本2.0"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -38,7 +38,7 @@
         <activity android:name="Activitys.StartActivity"></activity>
         <activity android:name="Activitys.CommentPageActivity"></activity>
         <provider
-            android:authorities="my.fileprovider"
+            android:authorities="wrongtitle2.fileprovider"
             android:name="android.support.v4.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

@@ -35,7 +35,7 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
 
 
     public LoadTitleInfoPresenter(ILoadTitleInfoFragment fragment){
-        Bmob.initialize(fragment.getContext(), "68d5baca3da4447b7be957110d9627f3");
+        Bmob.initialize(fragment.getContext(), "4bb218fd080af2496d95acc60e212704");
         iFragment = fragment;
     }
 
@@ -53,7 +53,8 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
 
     @Override
     public void loadTitleInfo() {
-
+        BmobFile xxx = new BmobFile();
+        Log.e("fuck", "查询错题的线程号"+ xxx.getUrl() );
 
         Log.e("fuck", "主线程号为："+ android.os.Process.myPid() );
         Log.e("fuck", "done: 这里是loadTitleInfoPresenter" );
@@ -68,12 +69,17 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
                 {
                     Log.e("fuck", "查询错题的线程号"+ android.os.Process.myPid() );
                     final List<TitleInfo> tmp_list = new ArrayList<TitleInfo>();
-                    for(int i=0;i<bWrongTitleList.size();i++) {
+                    for(int i=0;i<bWrongTitleList.size();i++)
+                    {
                         BWrongTitle wt = bWrongTitleList.get(i);
                         String userId = wt.getUserId();
                         String tag = wt.getTag();
                         String content = wt.getContent();
-                        String photoUrl = wt.getPhoto().getUrl();
+                        String photoUrl = null;
+                        if( wt.getPhoto()!=null)
+                             photoUrl = wt.getPhoto().getUrl();
+                        String userName = wt.getUserName();
+                        String userProfileUrl = wt.getProfileUrl();
 
                         final TitleInfo info = new TitleInfo();
                         info.setUserId(userId);
@@ -81,8 +87,19 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
                         info.setTag(tag);
                         info.setContent(content);
                         info.setTitleId(wt.getObjectId());
+                        info.setProfileUrl(userProfileUrl);
+                        info.setName(userName);
                         tmp_list.add(info);
+
+                        arr.add(0,info);
+                        if (tmp.size()<3)
+                        {
+                            nowIndex++;
+                            tmp.add(0,info);
+                        }
+                        Log.e("fuck", "什么鬼" );
                     }
+                    adapter.notifyDataSetChanged();
 
 
 
@@ -92,64 +109,64 @@ public class LoadTitleInfoPresenter implements ILoadTitleInfoPresenter {
 
 
 
-                    final int all_cnt = tmp_list.size();
-                    now_cnts[0] = 0;
-                    for ( int i=0;i< tmp_list.size();i++)
-                    {
-                        final  TitleInfo info = tmp_list.get(i);
-                        final int nowCnt = i;
-                        // 从数据库中查找姓名，并且加载到名字中
-                        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
-                        query.addWhereEqualTo("objectId", info.getUserId());
-                        query.findObjects(new FindListener<BmobUser>()
-                        {
-                            @Override
-                            public void done(List<BmobUser> list, BmobException e) {
-
-                                Log.e("fuck", "加载错题头像的线程号"+ android.os.Process.myPid() );
-
-                                if (e==null){
-                                    String username = list.get(0).getUsername();
-                                    info.setName(username);
-                                }
-                                // 从数据库中查找头像，并且加载到头像图片中
-                                BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
-                                query2.addWhereEqualTo("userId", info.getUserId());
-                                query2.findObjects(
-                                        new FindListener<BProfilePhoto>() {
-                                    @Override
-                                    public void done(List<BProfilePhoto> list, BmobException e)
-                                    {
-                                        if (e==null){
-                                            BmobFile bFile = list.get(0).getProfilePhotoFile();
-                                            String url = bFile.getUrl();
-                                            info.setProfileUrl(url);
-                                        }
-
-//                                        Log.e("fuck", "loadTitleInfoPresenter 加载完一条评论" );
-                                        arr.add(0,info);
-//                                        tmp.add(0,info);
-                                        if(tmp.size()<3)
-                                        {
-                                            nowIndex++;
-                                            tmp.add(0,info);
-                                        }
-
-                                        Log.e("fuck", "加载错题，序号是"+nowCnt+"" );
-
-                                        now_cnts[0]++;                    // 最重要
-                                        Log.e("fuck", "现在是第"+now_cnts[0]+"条错题" );
-
-                                        if (now_cnts[0]== all_cnt)        // 最重要
-                                            adapter.notifyDataSetChanged();
-                                    }
-                                });
-                            }
-                        });
-
-
-
-                    }
+//                    final int all_cnt = tmp_list.size();
+//                    now_cnts[0] = 0;
+//                    for ( int i=0;i< tmp_list.size();i++)
+//                    {
+//                        final  TitleInfo info = tmp_list.get(i);
+//                        final int nowCnt = i;
+//                        // 从数据库中查找姓名，并且加载到名字中
+//                        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
+//                        query.addWhereEqualTo("objectId", info.getUserId());
+//                        query.findObjects(new FindListener<BmobUser>()
+//                        {
+//                            @Override
+//                            public void done(List<BmobUser> list, BmobException e) {
+//
+//                                Log.e("fuck", "加载错题头像的线程号"+ android.os.Process.myPid() );
+//
+//                                if (e==null){
+//                                    String username = list.get(0).getUsername();
+//                                    info.setName(username);
+//                                }
+//                                // 从数据库中查找头像，并且加载到头像图片中
+//                                BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
+//                                query2.addWhereEqualTo("userId", info.getUserId());
+//                                query2.findObjects(
+//                                        new FindListener<BProfilePhoto>() {
+//                                    @Override
+//                                    public void done(List<BProfilePhoto> list, BmobException e)
+//                                    {
+//                                        if (e==null){
+//                                            BmobFile bFile = list.get(0).getProfilePhotoFile();
+//                                            String url = bFile.getUrl();
+//                                            info.setProfileUrl(url);
+//                                        }
+//
+////                                        Log.e("fuck", "loadTitleInfoPresenter 加载完一条评论" );
+//                                        arr.add(0,info);
+////                                        tmp.add(0,info);
+//                                        if(tmp.size()<3)
+//                                        {
+//                                            nowIndex++;
+//                                            tmp.add(0,info);
+//                                        }
+//
+//                                        Log.e("fuck", "加载错题，序号是"+nowCnt+"" );
+//
+//                                        now_cnts[0]++;                    // 最重要
+//                                        Log.e("fuck", "现在是第"+now_cnts[0]+"条错题" );
+//
+//                                        if (now_cnts[0]== all_cnt)        // 最重要
+//                                            adapter.notifyDataSetChanged();
+//                                    }
+//                                });
+//                            }
+//                        });
+//
+//
+//
+//                    }
 
                 }
                 else   // 查找错题失败

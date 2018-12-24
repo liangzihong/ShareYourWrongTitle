@@ -72,7 +72,7 @@ public class Fragment3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState){
 
-        Bmob.initialize(getActivity(), "68d5baca3da4447b7be957110d9627f3");
+        Bmob.initialize(getActivity(), "4bb218fd080af2496d95acc60e212704");
         imageUri = null;
         myActivity = this.getActivity();
 
@@ -185,6 +185,8 @@ public class Fragment3 extends Fragment {
                         wrongTitle.setUserId(userId);
                         wrongTitle.setContent( editContent.getText().toString() );
                         wrongTitle.setTag( editTag.getText().toString() );
+                        wrongTitle.setProfileUrl(MyApplication.CurrentProfileUrl);
+                        wrongTitle.setUserName(MyApplication.CurrentUserName);
                         wrongTitle.setPhoto(bFile);
                         wrongTitle.save(new SaveListener<String>() {
                             @Override
@@ -240,7 +242,8 @@ public class Fragment3 extends Fragment {
             wrongTitle.setUserId(userId);
             wrongTitle.setContent( editContent.getText().toString() );
             wrongTitle.setTag( editTag.getText().toString() );
-            wrongTitle.setPhoto(null);
+            wrongTitle.setProfileUrl(MyApplication.CurrentProfileUrl);
+            wrongTitle.setUserName(MyApplication.CurrentUserName);
             wrongTitle.save(new SaveListener<String>() {
                 @Override
                 public void done(String s, BmobException e) {
@@ -251,6 +254,9 @@ public class Fragment3 extends Fragment {
                         normalDialog.setTitle("系统信息");
                         normalDialog.setMessage("成功发布错题");
                         normalDialog.show();
+
+                        editContent.setText("");
+                        editTag.setText("");
                     }
                     else
                     {
@@ -353,7 +359,7 @@ public class Fragment3 extends Fragment {
 
 
         if(Build.VERSION.SDK_INT>=24)
-            imageUri= FileProvider.getUriForFile(this.getContext(),"my.fileprovider",file);
+            imageUri= FileProvider.getUriForFile(this.getContext(),"wrongtitle2.fileprovider",file);
         else
             imageUri=Uri.fromFile(file);
 

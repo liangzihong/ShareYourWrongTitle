@@ -40,18 +40,25 @@ import com.bumptech.glide.request.target.ViewTarget;
 import com.example.liangzihong.viewpager.R;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import Activitys.MainActivity;
 import Activitys.StartActivity;
 import Application.MyApplication;
+import BmobModels.BComment;
 import BmobModels.BProfilePhoto;
+import BmobModels.BWrongTitle;
 import MyUtils.util1;
+import cn.bmob.v3.BmobBatch;
+import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.datatype.BatchResult;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.QueryListListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 import cn.bmob.v3.listener.UploadFileListener;
@@ -161,6 +168,10 @@ public class Fragment4 extends Fragment {
                                         NameTextView.setText(newName);
                                         new AlertDialog.Builder(myActivity).setTitle("更名成功")
                                                 .setMessage("你的用户名已修改，请记住哦~~").show();
+
+                                        util1.modifyName();
+
+
                                     }
                                     else{
                                         // 不和旧名一样，但是失败，说明有名字重合
@@ -260,7 +271,7 @@ public class Fragment4 extends Fragment {
 
 
         if(Build.VERSION.SDK_INT>=24)
-            imageUri= FileProvider.getUriForFile(this.getContext(),"my.fileprovider",file);
+            imageUri= FileProvider.getUriForFile(this.getContext(),"wrongtitle2.fileprovider",file);
         else
             imageUri=Uri.fromFile(file);
 
@@ -432,6 +443,59 @@ public class Fragment4 extends Fragment {
                                     public void done(BmobException e) {
                                         if (e == null) {
                                             Toast.makeText(myActivity, "更新头像完成", Toast.LENGTH_SHORT).show();
+                                            String profileUrl = bFile.getUrl();
+                                            MyApplication.CurrentProfileUrl = profileUrl;
+                                            util1.modifyProfileUrl();
+
+
+//                                            BmobQuery<BWrongTitle> query3 = new BmobQuery<BWrongTitle>();
+//                                            query3.addWhereEqualTo("userId", MyApplication.CurrentUserId);
+//                                            query3.findObjects(new FindListener<BWrongTitle>() {
+//                                                @Override
+//                                                public void done(List<BWrongTitle> list, BmobException e) {
+//                                                    if(e==null)
+//                                                    {
+//
+//                                                        Log.e("lost", "读取数据成功");
+//                                                        List<BmobObject> update_list = new ArrayList<>();
+//                                                        Log.e("lost", "读取数据成功"+"没经过了 list.size "+ (list == null));
+//                                                        Log.e("lost", "读取数据成功"+"没经过了 list.size "+ list.size());
+//                                                        for (int i = 0; i < list.size(); i++) {
+//                                                            BWrongTitle bWrongTitle = list.get(i);
+//                                                            bWrongTitle.setProfileUrl(MyApplication.CurrentProfileUrl);
+//                                                            update_list.add(bWrongTitle);
+//                                                        }
+//                                                        Log.e("lost", "读取数据成功"+"经过了 list.size");
+//
+//
+//                                                        new BmobBatch().updateBatch(update_list).doBatch(new QueryListListener<BatchResult>() {
+//
+//                                                            @Override
+//                                                            public void done(List<BatchResult> results, BmobException e) {
+//                                                                Log.e("lost", "读取数据成功"+"经过了updateBatch");
+//                                                                if (e == null) {
+//                                                                    for (int i = 0; i < results.size(); i++) {
+//                                                                        BatchResult result = results.get(i);
+//                                                                        BmobException ex = result.getError();
+//                                                                        if (ex == null) {
+//                                                                            Log.e("lost", "done: 错题表更改头像url成功");
+//                                                                        } else {
+//                                                                            Log.e("lost", "done: 错题表更改头像url失败");
+//                                                                        }
+//                                                                    }
+//                                                                } else {
+//                                                                    Log.e("lost", "done: 错题表更改头像url失败");
+//                                                                }
+//                                                            }
+//                                                        });
+//                                                    }
+//                                                    else{
+//                                                        Log.e("lost", "失败"+e.toString());
+//                                                    }
+//                                                }
+//                                            });
+
+
                                         } else {
                                             Toast.makeText(myActivity, "更新头像失败", Toast.LENGTH_SHORT).show();
                                         }
@@ -507,12 +571,15 @@ public class Fragment4 extends Fragment {
                 if (e==null){
                     BmobFile bFile = list.get(0).getProfilePhotoFile();
                     String url = bFile.getUrl();
+                    MyApplication.CurrentProfileUrl = url;
                     GaussianBlurFromUrl(url);
 
                 }
             }
         });
     }
+
+
 
 
 

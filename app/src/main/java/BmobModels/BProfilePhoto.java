@@ -11,6 +11,15 @@ import cn.bmob.v3.datatype.BmobFile;
 public class BProfilePhoto extends BmobObject {
     private BmobFile profilePhotoFile;
     private String userId;
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public BmobFile getProfilePhotoFile() {
         return profilePhotoFile;

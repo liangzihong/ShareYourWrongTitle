@@ -68,7 +68,7 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         super.onCreate(savedInstanceState);
         setContentView(R.layout.comment_page);
 
-        Bmob.initialize(this, "68d5baca3da4447b7be957110d9627f3");
+        Bmob.initialize(this, "4bb218fd080af2496d95acc60e212704");
 
         Intent intent = getIntent();
         titleInfo = new TitleInfo();
@@ -168,6 +168,8 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         bComment.setUserId(CurrentUserId);
         bComment.setTitleId(titleInfo.getTitleId());
         bComment.setComment( write_edit.getText()+"");
+        bComment.setUserName(MyApplication.CurrentUserName);
+        bComment.setProfileUrl(MyApplication.CurrentProfileUrl);
         bComment.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {

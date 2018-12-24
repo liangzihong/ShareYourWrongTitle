@@ -41,7 +41,7 @@ public class Fragment1 extends Fragment implements  ILoadTitleInfoFragment{
     @Override
     public View onCreateView(LayoutInflater inflater,  ViewGroup container,  Bundle savedInstanceState) {
 
-        Bmob.initialize(getActivity(), "68d5baca3da4447b7be957110d9627f3");
+        Bmob.initialize(getActivity(), "4bb218fd080af2496d95acc60e212704");
         View view=inflater.inflate(R.layout.fragment1_layout,container,false);
         listView=(ListView) view.findViewById(R.id.fg1_listview);
         myActivity = getActivity();

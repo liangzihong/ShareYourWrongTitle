@@ -81,7 +81,8 @@ public class TitleInfoAdapter extends ArrayAdapter<TitleInfo> {
         viewHolder.name.setText(titleInfo.getName());
         viewHolder.tag.setText("标签:"+titleInfo.getTag());
         viewHolder.content.setText(titleInfo.getContent());
-        Glide.with(smallContext).load(titleInfo.getPhotoUrl()).into(viewHolder.photo);
+        if (titleInfo.getPhotoUrl()!=null)
+            Glide.with(smallContext).load(titleInfo.getPhotoUrl()).into(viewHolder.photo);
         Glide.with(smallContext).load(titleInfo.getProfileUrl()).into(viewHolder.profile);
 
 

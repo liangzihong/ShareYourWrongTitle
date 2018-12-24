@@ -38,7 +38,7 @@ public class SignupActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup_layout);
-        Bmob.initialize(this, "68d5baca3da4447b7be957110d9627f3");
+        Bmob.initialize(this, "4bb218fd080af2496d95acc60e212704");
 
         init();
 

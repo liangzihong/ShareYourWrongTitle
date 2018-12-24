@@ -9,6 +9,8 @@ import cn.bmob.v3.BmobObject;
 public class BComment extends BmobObject {
     private String titleId;
     private String userId;
+    private String userName;
+    private String profileUrl;
     private String comment;
 
     public String getTitleId() {
@@ -33,5 +35,21 @@ public class BComment extends BmobObject {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
     }
 }

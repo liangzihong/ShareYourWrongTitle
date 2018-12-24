@@ -10,9 +10,27 @@ import cn.bmob.v3.datatype.BmobFile;
 public class BWrongTitle extends BmobObject {
 
     private String userId;
+    private String userName;
+    private String profileUrl;
     private BmobFile photo;
     private String tag;
     private String content;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getProfileUrl() {
+        return profileUrl;
+    }
+
+    public void setProfileUrl(String profileUrl) {
+        this.profileUrl = profileUrl;
+    }
 
     public String getContent() {
         return content;
