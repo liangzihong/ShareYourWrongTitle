@@ -3,6 +3,7 @@ package Activitys;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -42,6 +43,9 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
     private MyListView myListView;
     private EditText write_edit;
     private Button send_button;
+
+    private ImageView profile;
+    private TextView name;
 
 
 
@@ -87,7 +91,8 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         myListView = (MyListView)findViewById(R.id.comment_page_MyListView);
         write_edit = (EditText)findViewById(R.id.comment_page_editText);
         send_button = (Button)findViewById(R.id.comment_page_send_button);
-
+        profile =(ImageView) findViewById(R.id.comment_page_profile);
+        name = (TextView)findViewById(R.id.comment_page_name);
 
         init();
 
@@ -102,7 +107,10 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         Log.e("fuck", "init: 这里是 CommentPageActivity的init");
 
 
-        Glide.with(this).load(titleInfo.getPhotoUrl()).into(photo);
+        if (titleInfo.getPhotoUrl() != null)
+            Glide.with(this).load(titleInfo.getPhotoUrl()).into(photo);
+        Glide.with(this).load(titleInfo.getProfileUrl()).into(profile);
+        name.setText(titleInfo.getName());
         content.setText(titleInfo.getContent());
 
 
