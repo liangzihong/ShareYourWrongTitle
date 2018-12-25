@@ -73,57 +73,66 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
                         info.setProfileUrl(profileUrl);
                         info.setName(userName);
                         tmp_list.add(info);
+
+                        arr.add(0,info);
                     }
 
-
-                    final int all_cnt = tmp_list.size();
-                    now_cnts[0] = 0;
-                    for (int i=0;i<tmp_list.size();i++)
+                    for(int i=0;i<arr.size();i++)
                     {
-                        final CommentInfo info = tmp_list.get(i);
-                        final int nowCnt = i;
-
-                        // 先找姓名
-                        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
-                        query.addWhereEqualTo("objectId", info.getUserId());
-                        query.findObjects(new FindListener<BmobUser>() {
-                            @Override
-                            public void done(List<BmobUser> list, BmobException e) {
-                                if (e == null) {
-                                    String username = list.get(0).getUsername();
-                                    info.setName(username);
-                                }
-
-                                // 再找头像
-                                BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
-                                query2.addWhereEqualTo("userId", info.getUserId());
-                                query2.findObjects(new FindListener<BProfilePhoto>() {
-                                    @Override
-                                    public void done(List<BProfilePhoto> list, BmobException e) {
-                                        if (e==null){
-                                            BmobFile bFile = list.get(0).getProfilePhotoFile();
-                                            String url = bFile.getUrl();
-                                            info.setProfileUrl(url);
-
-                                        }
-
-                                        arr.add(0,info);
-                                        tmp.add(0,info);
-//                                        Log.e("fuck", "加载完一条评论");
-
-                                        Log.e("fuck", "加载评论，序号是"+nowCnt+"" );
-                                        Log.e("fuck", "现在是第"+now_cnts[0]+"条评论" );
-
-                                        now_cnts[0]++;
-
-                                        if (now_cnts[0] == all_cnt)
-                                            adapter.notifyDataSetChanged();
-
-                                    }
-                                });
-                            }
-                        });
+                        nowIndex++;
+                        tmp.add(arr.get(i));
+                        if (tmp.size()>=3)
+                            break;
                     }
+                    adapter.notifyDataSetChanged();
+//                    final int all_cnt = tmp_list.size();
+//                    now_cnts[0] = 0;
+//                    for (int i=0;i<tmp_list.size();i++)
+//                    {
+//                        final CommentInfo info = tmp_list.get(i);
+//                        final int nowCnt = i;
+//
+//                        // 先找姓名
+//                        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
+//                        query.addWhereEqualTo("objectId", info.getUserId());
+//                        query.findObjects(new FindListener<BmobUser>() {
+//                            @Override
+//                            public void done(List<BmobUser> list, BmobException e) {
+//                                if (e == null) {
+//                                    String username = list.get(0).getUsername();
+//                                    info.setName(username);
+//                                }
+//
+//                                // 再找头像
+//                                BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
+//                                query2.addWhereEqualTo("userId", info.getUserId());
+//                                query2.findObjects(new FindListener<BProfilePhoto>() {
+//                                    @Override
+//                                    public void done(List<BProfilePhoto> list, BmobException e) {
+//                                        if (e==null){
+//                                            BmobFile bFile = list.get(0).getProfilePhotoFile();
+//                                            String url = bFile.getUrl();
+//                                            info.setProfileUrl(url);
+//
+//                                        }
+//
+//                                        arr.add(0,info);
+//                                        tmp.add(0,info);
+////                                        Log.e("fuck", "加载完一条评论");
+//
+//                                        Log.e("fuck", "加载评论，序号是"+nowCnt+"" );
+//                                        Log.e("fuck", "现在是第"+now_cnts[0]+"条评论" );
+//
+//                                        now_cnts[0]++;
+//
+//                                        if (now_cnts[0] == all_cnt)
+//                                            adapter.notifyDataSetChanged();
+//
+//                                    }
+//                                });
+//                            }
+//                        });
+//                    }
 
 
                 }
@@ -152,42 +161,19 @@ public class LoadCommentInfoPresenter implements ILoadCommentInfoPresenter {
         String userId = bComment.getUserId();
         String titleId = bComment.getTitleId();
         String comment = bComment.getComment();
+        String profileUrl = bComment.getProfileUrl();
+        String name = bComment.getUserName();
 
         final CommentInfo info = new CommentInfo();
         info.setUserId(userId);
         info.setComment(comment);
+        info.setName(name);
+        info.setProfileUrl(profileUrl);
 
-        // 先找姓名
-        BmobQuery<BmobUser> query = new BmobQuery<BmobUser>();
-        query.addWhereEqualTo("objectId", info.getUserId());
-        query.findObjects(new FindListener<BmobUser>() {
-            @Override
-            public void done(List<BmobUser> list, BmobException e) {
-                if (e == null) {
-                    String username = list.get(0).getUsername();
-                    info.setName(username);
-                }
 
-                // 再找头像
-                BmobQuery<BProfilePhoto> query2 = new BmobQuery<BProfilePhoto>();
-                query2.addWhereEqualTo("userId", info.getUserId());
-                query2.findObjects(new FindListener<BProfilePhoto>() {
-                    @Override
-                    public void done(List<BProfilePhoto> list, BmobException e) {
-                        if (e==null){
-                            BmobFile bFile = list.get(0).getProfilePhotoFile();
-                            String url = bFile.getUrl();
-                            info.setProfileUrl(url);
+        arr.add(0,info);
+        tmp.add(0,info);
+        adapter.notifyDataSetChanged();
 
-                        }
-
-                        arr.add(0,info);
-                        tmp.add(0,info);
-                        Log.e("fuck", "加载完一条评论");
-                        adapter.notifyDataSetChanged();
-                    }
-                });
-            }
-        });
     }
 }

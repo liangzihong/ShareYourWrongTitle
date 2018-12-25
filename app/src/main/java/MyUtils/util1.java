@@ -193,7 +193,7 @@ public class util1 {
 
 
         BmobQuery<BWrongTitle> query3 = new BmobQuery<BWrongTitle>();
-//        query3.addWhereEqualTo("userId", userId);
+        query3.addWhereEqualTo("userId", userId);
         Log.e("lost", "userId: "+userId );
         query3.findObjects(new FindListener<BWrongTitle>() {
             @Override
