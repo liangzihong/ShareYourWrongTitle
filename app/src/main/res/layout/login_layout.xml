@@ -1,169 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app = "http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_color"
-    android:orientation="vertical"
-    android:gravity="center">
+    android:background="@drawable/loginbg"
+    >
 
 
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4">
-
-
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/login_inputUser_editText"
-                        android:hint="请输入用户名"
-                        android:inputType="textPersonName"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"/>
-
-
-                </android.support.design.widget.TextInputLayout>
-
-                <!--EditText
-                    android:id="@+id/login_inputUser_editText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:hint="Name"
-                    android:inputType="textPersonName" /-->
-
-
-            </LinearLayout>
-
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4">
-
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2">
-
-                    <android.support.design.widget.TextInputEditText
-                        android:id="@+id/login_inputPassword_editText"
-                        android:hint="请输入密码"
-                        android:inputType="textPassword"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"/>
-
-
-                </android.support.design.widget.TextInputLayout>
-
-
-                <!--EditText
-                    android:id="@+id/login_inputPassword_editText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:hint="password"
-                    android:inputType="textPassword" /-->
-
-
-
-
-            </LinearLayout>
-
-
-
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-    
-    
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="50sp" />
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="206dp"
         android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:id="@+id/textInputLayout">
+
+    </android.support.design.widget.TextInputLayout>
 
 
-        <Button
-            android:id="@+id/login_ensure_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="确定"
-            android:textSize="20sp"
-            android:background="@drawable/button_style"/>
-        
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
-        
-        <Button
-            android:id="@+id/login_cancel_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_style"
-            android:text="取消"
-            android:textSize="20sp" /> 
-        
-        
-    </LinearLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:id="@+id/textInputLayout2">
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_cancel_button"
+        android:layout_height="35dp"
+        android:background="@drawable/buttonnew2"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:text="Cancle"
+        android:textSize="15sp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
+        android:layout_below="@+id/login_ensure_button"
+        android:layout_alignStart="@+id/login_ensure_button"
+        android:layout_width="100dp" />
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_inputPassword_editText"
+        android:textColor="#B2B6B9"
+        android:textColorHint="#B2B6B9"
+        android:layout_weight="2"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/login_inputUser_editText"
+        android:layout_alignStart="@+id/login_inputUser_editText" />
+
+    <Button
+        android:id="@+id/login_ensure_button"
+        android:layout_height="35dp"
+        android:background="@drawable/buttonnew2"
+        android:textColor="#FFFFFF"
+        android:text="Ok"
+        android:gravity="center"
+        android:textSize="15sp"
+        android:layout_marginTop="58dp"
+        android:layout_width="100dp"
+        android:layout_below="@+id/login_inputPassword_editText"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_inputUser_editText"
+        android:textColor="#B2B6B9"
+        android:hint="username"
+        android:textColorHint="#B2B6B9"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:layout_marginTop="107dp"
+        android:layout_below="@+id/textInputLayout2"
+        android:layout_centerHorizontal="true" />
 
 
-</LinearLayout>
+</RelativeLayout>

@@ -3,99 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background_color">
+    android:background="@drawable/bg">
 
-    <Space
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_weight="7">
+        <Button
+            android:id="@+id/welcome_signup_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:text="注册"
+            android:textColor="#3B5E6A"
+            android:background="@drawable/buttonnew"
+            android:layout_marginBottom="81dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5"
-            android:layout_margin="10dp"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            >
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:text="你还没有登陆哦~~\n快点登陆与同学共享错题"
-                android:layout_weight="2"
-                android:gravity="center"/>
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
+        <Button
+            android:id="@+id/welcome_login_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="#3B5E6A"
+            android:gravity="center"
+            android:text="登录"
+            android:background="@drawable/buttonnew"
+            android:layout_marginBottom="25dp"
+            android:layout_above="@+id/welcome_signup_button"
+            android:layout_alignStart="@+id/welcome_signup_button" />
 
 
+    </RelativeLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-            <Button
-                android:id="@+id/welcome_login_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="登录"
-                android:background="@android:color/transparent"
-                />
-
-            <Button
-                android:id="@+id/welcome_signup_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:text="注册"
-                android:background="@android:color/transparent"/>
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
 
 </LinearLayout>

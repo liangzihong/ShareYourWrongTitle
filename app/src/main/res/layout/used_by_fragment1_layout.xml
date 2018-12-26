@@ -18,7 +18,7 @@
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:background="@drawable/card_background">
+            android:background="#FFFFFF">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/fragment1_profile"
@@ -33,16 +33,24 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="@drawable/card_background">
+            android:background="#FFFFFF">
 
-            <TextView
-                android:id="@+id/Author_Name"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="17sp"
-                android:textStyle="bold"
-                android:textColor="#000000"/>
-            
+                android:layout_weight="10"
+                >
+                <TextView
+                    android:id="@+id/Author_Name"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
+
+            </RelativeLayout>
+
+
             <TextView
                 android:id="@+id/fragment1_content"
                 android:layout_width="match_parent"
@@ -64,18 +72,31 @@
             <Space
                 android:layout_width="match_parent"
                 android:layout_height="7dp" />
-            
-            
-            <TextView
-                android:id="@+id/Title_Tags"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"/>
+
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal">
+                <Space
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent" />
+
+
+                <TextView
+                    android:id="@+id/Title_Tags"
+                    android:layout_width="50dp"
+                    android:gravity="center"
+                    android:background="#459BFF"
+                    android:textColor="#FFFFFF"
+                    android:layout_height="wrap_content"
+                    android:textSize="15sp"
+                     />
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
 
                 <CheckBox
                     android:id="@+id/fragment1_collect"
@@ -83,34 +104,39 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:button="@null"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
                     android:drawableStart="@drawable/star_selector" />
 
                 <Space
-                    android:layout_width="20dp"
+                    android:layout_width="10dp"
                     android:layout_height="match_parent" />
 
                 <CheckBox
                     android:id="@+id/fragment1_love"
                     android:button="@null"
                     android:layout_width="24dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:drawableStart="@drawable/like_selector" />
 
                 <Space
-                    android:layout_width="20dp"
+                    android:layout_width="10dp"
                     android:layout_height="match_parent" />
 
                 <ImageView
                     android:id="@+id/fragment1_comment"
                     android:layout_width="24dp"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
                     android:layout_height="match_parent"
-                    android:src="@drawable/comment"/>
+                    android:src="@drawable/comment2"/>
 
             </LinearLayout>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

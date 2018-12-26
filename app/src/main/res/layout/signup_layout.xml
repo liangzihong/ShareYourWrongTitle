@@ -1,165 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@drawable/background_color"
-android:orientation="vertical"
-android:gravity="center">
+android:background="@drawable/loginbg"
+>
 
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:layout_weight="2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="9dp"
+        android:layout_marginBottom="206dp"
+        android:orientation="horizontal"
+        android:id="@+id/textInputLayout">
 
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4">
+    </android.support.design.widget.TextInputLayout>
 
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2">
-
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/signup_inputUser_editText"
-                    android:hint="请输入用户名"
-                    android:inputType="textPersonName"
-                    android:textSize="17sp"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-            <!--EditText
-                android:id="@+id/signup_inputUser_editText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="Name"
-                android:inputType="textPersonName" /-->
-
-
-        </LinearLayout>
-
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:id="@+id/textInputLayout2">
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/signup_ensure_button"
+        android:layout_height="20dp"
+        android:background="@drawable/buttonnew2"
+        android:textColor="#FFFFFF"
+        android:text="Ok"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:textSize="15sp"
+        android:layout_marginTop="44dp"
+        android:layout_width="100dp"
+        android:layout_below="@+id/signup_inputPassword_editText"
+        android:layout_alignStart="@+id/signup_inputPassword_editText" />
 
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="4">
-
-
-
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2">
-
-                <android.support.design.widget.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/signup_inputPassword_editText"
-                    android:layout_weight="2"
-                    android:hint="请输入密码"
-                    android:inputType="textPassword"
-                    android:textSize="17sp"/>
-
-            </android.support.design.widget.TextInputLayout>
-
-
-            <!--EditText
-                android:id="@+id/signup_inputPassword_editText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:hint="password"
-                android:inputType="textPassword" /-->
-
-        </LinearLayout>
-
-
-
-
-        <Space
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-
-    </LinearLayout>
-
-</LinearLayout>
-
-
-<Space
-    android:layout_width="match_parent"
-    android:layout_height="50sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:id="@+id/signup_inputPassword_editText"
+        android:textColor="#B2B6B9"
+        android:textColorHint="#B2B6B9"
+        android:layout_weight="2"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:textSize="18sp"
+        android:layout_marginTop="44dp"
+        android:layout_alignTop="@+id/signup_inputUser_editText"
+        android:layout_alignStart="@+id/signup_inputUser_editText" />
+
+    <Button
+        android:id="@+id/signup_cancel_button"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:background="@drawable/buttonnew2"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:text="Cancle"
+        android:textSize="15sp"
+        android:layout_marginTop="29dp"
+        android:layout_below="@+id/signup_ensure_button"
+        android:layout_alignStart="@+id/signup_ensure_button" />
+
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/signup_inputUser_editText"
+        android:textColor="#B2B6B9"
+        android:hint="username"
+        android:textColorHint="#B2B6B9"
+        android:inputType="textPersonName"
+        android:textSize="18sp"
+        android:layout_marginTop="103dp"
+        android:layout_below="@+id/textInputLayout2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="81dp" />
 
 
-        <Button
-            android:id="@+id/signup_ensure_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_style"
-            android:text="确定"
-            android:textSize="15sp" />
-
-        <Space
-            android:layout_width="40dp"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/signup_cancel_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_style"
-            android:text="取消"
-            android:textSize="15sp" />
-
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

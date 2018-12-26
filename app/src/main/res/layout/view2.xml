@@ -4,10 +4,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/background_color">
+    android:background="@drawable/lightgreenbg"
+    >
 
 
     <android.support.v7.widget.CardView
+        app:cardBackgroundColor="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
@@ -23,111 +25,159 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="标签分区"
+                android:layout_height="50dp"
+                android:text="标签页"
                 android:gravity="center"
-                android:textSize="20sp"/>
+                android:textSize="27sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:textColor="#3B5E6A"
+                android:gravity="center"
+                android:text="数学" />
 
-            <TableLayout
-                android:id="@+id/TableLayout2"
-                android:layout_width="fill_parent"
+            <Space
+                android:layout_width="25dp"
+               android:layout_height="0dp"
+                />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="语文" />
+
+            <Space
+                android:layout_width="25dp"
                 android:layout_height="0dp"
-                android:layout_weight="6">
+                />
 
-                <TableRow>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="英语" />
+            >
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawableTop="@drawable/maths"
-                        android:background="@android:color/transparent"
-                        android:text="数学" />
 
-                    <Button
-                        android:id="@+id/button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/literature"
-                        android:text="语文" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/english"
-                        android:text="英语" />
+        </LinearLayout>
 
-                </TableRow>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="物理" />
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                />
 
-                <Space android:layout_height="30dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="生物" />
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                />
 
-                <TableRow>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="化学" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/physics"
-                        android:text="物理" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/biology"
-                        android:text="生物" />
+        </LinearLayout>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/chemistry"
-                        android:text="化学" />
 
-                </TableRow>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="地理" />
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                />
 
-                <Space android:layout_height="30dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="历史" />
+            <Space
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_weight="0.5"
+                android:textSize="20sp"
+                android:background="@drawable/buttontag"
+                android:gravity="center"
+                android:textColor="#3B5E6A"
+                android:text="政治"
+                />
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+        </LinearLayout>
 
-                    <Button
-                        android:id="@+id/button3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/geography"
-                        android:text="地理" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/history"
-                        android:text="历史" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/polity"
-                        android:text="政治" />
-
-                </TableRow>
-
-            </TableLayout>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
@@ -140,6 +190,7 @@
 
 
     <android.support.v7.widget.CardView
+        app:cardBackgroundColor="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="4"
@@ -159,8 +210,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="自定义标签"
+                android:textColor="#39667C"
                 android:gravity="center"
-                android:textSize="20sp"/>
+                android:textSize="25sp"/>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -178,8 +233,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:gravity="center"
-                    android:text="输入自定义标签"
-                    android:textSize="15sp" />
+                    android:textColorHint="#7E8383"
+                    android:hint="输入自定义标签"
+                    android:textSize="17sp" />
 
                 <Button
                     android:id="@+id/button2"
@@ -188,7 +244,7 @@
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/search"
-                    android:text="搜索"/>
+                    />
             </LinearLayout>
 
         </LinearLayout>

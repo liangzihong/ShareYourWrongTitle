@@ -27,6 +27,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -64,7 +65,7 @@ public class Fragment3 extends Fragment {
 
     private EditText editTag;
     private EditText editContent;
-    private Button send_button;
+    private ImageButton send_button;
 
     private ImageView imageView;
     private Activity myActivity;
@@ -84,7 +85,7 @@ public class Fragment3 extends Fragment {
 
         editTag = (EditText)view.findViewById(R.id.view3_tag_edit);
         editContent = (EditText)view.findViewById(R.id.view3_content_edit);
-        send_button = (Button)view.findViewById(R.id.view3_send_button);
+        send_button = (ImageButton)view.findViewById(R.id.view3_send_button);
         isAlbum = false;
         init();
         return view;
@@ -359,7 +360,7 @@ public class Fragment3 extends Fragment {
 
 
         if(Build.VERSION.SDK_INT>=24)
-            imageUri= FileProvider.getUriForFile(this.getContext(),"wrongtitle2.fileprovider",file);
+            imageUri= FileProvider.getUriForFile(this.getContext(),"wrongtitle3.fileprovider",file);
         else
             imageUri=Uri.fromFile(file);
 

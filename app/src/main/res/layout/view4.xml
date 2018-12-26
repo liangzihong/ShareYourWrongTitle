@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/background_color">
+    android:background="@drawable/dark2">
 
     <android.support.v7.widget.CardView
         android:id="@+id/view4_profile_bg"
@@ -24,8 +24,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_height="124dp"
                 android:gravity="bottom"
                 android:orientation="horizontal">
 
@@ -54,6 +53,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+
                 android:layout_weight="1">
 
                 <Space
@@ -63,13 +63,12 @@
 
                 <TextView
                     android:id="@+id/view4_name"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:layout_weight="2"
                     android:gravity="center"
                     android:text="name"
-                    android:textColor="#000000"
+                    android:textColor="#FFFFFF"
                     android:textSize="25sp"
                     android:textStyle="bold" />
 
@@ -95,11 +94,15 @@
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="@android:color/transparent"
+
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#00ffffff"
             android:orientation="vertical">
 
             <Space
@@ -109,6 +112,7 @@
             <TableLayout
                 android:id="@+id/TableLayout2"
                 android:layout_width="match_parent"
+                android:background="#00ffffff"
                 android:layout_height="wrap_content">
 
                 <TableRow>
@@ -119,7 +123,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/name"
+                        android:drawableTop="@drawable/namee"
+                        android:textColor="#FFFFFF"
                         android:text="姓名" />
 
                     <Button
@@ -128,7 +133,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/profile"
+                        android:drawableTop="@drawable/myuser"
+                        android:textColor="#FFFFFF"
                         android:text="头像" />
 
                     <Button
@@ -137,7 +143,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/logout"
+                        android:drawableTop="@drawable/deletemy"
+                        android:textColor="#FFFFFF"
                         android:text="注销" />
 
                 </TableRow>
@@ -152,7 +159,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/myteam"
+                        android:drawableTop="@drawable/mygroup"
+                        android:textColor="#FFFFFF"
                         android:text="我的团队" />
 
                     <Button
@@ -161,7 +169,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/mytitle"
+                        android:drawableTop="@drawable/timu"
+                        android:textColor="#FFFFFF"
                         android:text="我的题目" />
 
                     <Button
@@ -170,7 +179,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/mycollection"
+                        android:drawableTop="@drawable/starr"
+                        android:textColor="#FFFFFF"
                         android:text="我的收藏" />
 
                 </TableRow>
@@ -187,7 +197,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/chongzhi"
+                        android:drawableTop="@drawable/nice"
+                        android:textColor="#FFFFFF"
                         android:text="充值" />
 
                     <Button
@@ -195,7 +206,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/help"
+                        android:drawableTop="@drawable/sun"
+                        android:textColor="#FFFFFF"
                         android:text="帮助" />
 
                     <Button
@@ -203,7 +215,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/about"
+                        android:drawableTop="@drawable/aboutt"
+                        android:textColor="#FFFFFF"
                         android:text="关于" />
 
                 </TableRow>

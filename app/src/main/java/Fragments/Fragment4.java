@@ -271,7 +271,7 @@ public class Fragment4 extends Fragment {
 
 
         if(Build.VERSION.SDK_INT>=24)
-            imageUri= FileProvider.getUriForFile(this.getContext(),"wrongtitle2.fileprovider",file);
+            imageUri= FileProvider.getUriForFile(this.getContext(),"wrongtitle3.fileprovider",file);
         else
             imageUri=Uri.fromFile(file);
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
     private TextView content;
     private MyListView myListView;
     private EditText write_edit;
-    private Button send_button;
+    private ImageButton send_button;
 
     private ImageView profile;
     private TextView name;
@@ -90,7 +91,7 @@ public class CommentPageActivity extends BaseActivity implements ILoadCommentInf
         content = (TextView) findViewById(R.id.comment_page_content);
         myListView = (MyListView)findViewById(R.id.comment_page_MyListView);
         write_edit = (EditText)findViewById(R.id.comment_page_editText);
-        send_button = (Button)findViewById(R.id.comment_page_send_button);
+        send_button = (ImageButton) findViewById(R.id.comment_page_send_button);
         profile =(ImageView) findViewById(R.id.comment_page_profile);
         name = (TextView)findViewById(R.id.comment_page_name);
 

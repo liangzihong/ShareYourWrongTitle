@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_color"
+
     android:orientation="vertical">
 
 
@@ -9,20 +11,23 @@
         android:id="@+id/viewpager"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:background="@drawable/background_color"
         android:layout_weight="1">
     </android.support.v4.view.ViewPager>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="8dp"
-        android:background="#f6f6f6"/>
+        android:background="@android:color/transparent"/>
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#f6f6f6"
-        android:orientation="horizontal">
+        android:layout_height="40dp"
+        android:background="@android:color/transparent"
+        android:orientation="horizontal"
+
+        >
 
         <RadioButton
             android:id="@+id/first"
@@ -30,10 +35,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/team_selector"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="团队" />
+            android:padding="8dp"
+            android:drawableBottom="@drawable/group"
+         />
 
         <RadioButton
             android:id="@+id/second"
@@ -41,39 +45,35 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/category_selector"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="分区" />
+            android:padding="8dp"
+            android:drawableBottom="@drawable/categ"
+            />
 
         <RadioButton
             android:id="@+id/third"
+            android:padding="8dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/release_selector"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:text="发布"
+            android:drawableBottom="@drawable/sendme"
             />
 
         <RadioButton
             android:id="@+id/forth"
+            android:padding="8dp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:button="@null"
-            android:drawableTop="@drawable/account_selector"
+            android:drawableBottom="@drawable/user"
             android:gravity="center"
-            android:text="我的"
-            android:textSize="16sp"
-            android:textStyle="normal"
+
             android:layout_weight="1" />
     </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="6dp"
-        android:background="#f6f6f6"/>
+        android:background="@drawable/background_color"/>
 
 </LinearLayout>
